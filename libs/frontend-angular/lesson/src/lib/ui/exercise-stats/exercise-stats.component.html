@@ -1,0 +1,27 @@
+<div class="grid justify-content-center">
+    <div class="col-2 text-center">
+        <small>All Questions: {{allQuestions}}</small>
+    </div>
+    <div class="col-2 text-center">
+        <small>Good Answers: {{goodAnswers}}</small>
+    </div>
+    <div class="col-2 text-center">
+        <small>Wrong Answers: {{wrongAnswers}}</small>
+    </div>
+    <div class="col-2 text-center">
+        <small>All Tries: {{allTries}}</small>
+    </div>
+    <div class="col-2 text-center">
+        <small>Ratio: {{ goodAnswers }} / {{ allToGuess }}</small>
+    </div>
+</div>
+<div class="grid m-4">
+    <div class="col-12">
+        <strong>Progress</strong>
+        <p-progressBar [value]="progress * 100 | number: '1.1-1'"></p-progressBar>
+    </div>
+    <div class="col-12">
+        <strong>Effectiveness</strong>
+        <p-progressBar [value]="effectiveness * 100 | number: '1.1-1'"></p-progressBar>
+    </div>
+</div>

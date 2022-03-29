@@ -1,0 +1,44 @@
+{
+  "root": "libs/api-contract",
+  "sourceRoot": "libs/api-contract/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/libs/api-contract",
+        "main": "libs/api-contract/src/index.ts",
+        "tsConfig": "libs/api-contract/tsconfig.lib.json",
+        "assets": [
+          "libs/api-contract/*.md"
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "libs/api-contract/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/api-contract"
+      ],
+      "options": {
+        "jestConfig": "libs/api-contract/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": [
+    "type:contract"
+  ]
+}

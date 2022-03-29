@@ -1,0 +1,26 @@
+<div *ngIf="vm$ | async as vm">
+
+    <div class="grid align-items-center mt-0">
+        <div class="col-1">
+            {{question.id}}
+        </div>
+        <div class="col-2">
+            {{question.firstValue}}
+            <br /><small>{{question.firstValueCollocation}}</small>
+            <br /><small>{{question.firstValueUsage}}</small>
+        </div>
+        <div class="col-7">
+            {{question.secondValue}}
+            <br /><small>{{question.secondValueCollocation}}</small>
+            <br /><small>{{question.secondValueUsage}}</small>
+        </div>
+        <div class="col-2 flex justify-content-end">
+            <button type="button" (click)="toggleUpdate(vm.mode)" pButton 
+                [icon]="vm.mode === 'update' ? 'pi pi-angle-up' : 'pi pi-angle-down'" class="ml-1"></button>
+            <button [loading]="vm.processingDelete" type="button" (click)="removeQuestion()" pButton class="p-button-danger ml-1" icon="pi pi-trash"></button>
+        </div>
+
+        <qis-question-edit-form  *ngIf="vm.mode === 'update'" [question]="question" @enterLeaveAnimation></qis-question-edit-form>
+     
+    </div>
+</div>

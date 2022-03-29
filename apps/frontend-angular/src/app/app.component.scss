@@ -1,0 +1,26 @@
+main{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 80px auto;
+    height: 100vh;
+
+    grid-template-areas: 
+        "header header header header"
+        "aside content content content";
+
+
+    qis-header{
+        grid-area: header;
+    }
+
+    qis-aside{
+        grid-area: aside;
+    }
+
+    section {
+        grid-area: content;
+        padding: 20px;
+    }
+
+
+}

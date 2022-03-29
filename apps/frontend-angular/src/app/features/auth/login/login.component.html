@@ -1,0 +1,28 @@
+
+<section class="login">
+    <i class="pi pi-unlock login-lock-icon" style="font-size: 3rem" ></i>
+    <h2 i18n>This content is protected</h2>
+    <h6 i18n>To view, please enter your password</h6>
+    <div class="login-input">
+        <input class="p-inputtext-lg" type="text" 
+            [formControl]="password"
+            pInputText 
+            autocomplete="off"
+            autofocus
+            #loginInput
+        >
+            <span [ngStyle]="{color:'var(--green-500)'}" class="login-input-tip" *ngIf="(inputStatus$ | async) === 'PENDING'">
+                <i class="pi pi-spin pi-spinner login-spinner-icon" style="font-size: 1rem" ></i> Auth checking...
+            </span>
+
+            <span [ngStyle]="{color:'var(--red-500)'}" class="login-input-tip" *ngIf="(inputStatus$ | async) === 'INVALID'" >
+                Invalid password
+            </span>
+
+
+            <span [ngStyle]="{color:'var(--green-500)'}" class="login-input-tip" *ngIf="(inputStatus$ | async) === 'VALID'" >
+                Valid password
+            </span>
+    </div>
+</section>
+

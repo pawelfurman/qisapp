@@ -1,0 +1,21 @@
+<form action="" (submit)="submitAnswer()" [formGroup]="form">
+    <div class="grid">
+        <div class="col-6">
+            <input type="text" pInputText formControlName="firstValue" #firstValueField>
+        </div>
+        <div class="col-6">
+            <input type="text" pInputText formControlName="secondValue" #secondValueField>
+        </div>
+    </div>
+    <div class="grid">
+        <div class="col-12">
+            <button type="submit" pButton label="Submit"></button>
+        </div>
+        <!-- <div class="col-2">
+            <button type="button" pButton (click)="correctAnswer(1)">Skip</button>
+        </div> -->
+    </div>
+
+    <button type="button" (click)="skipQuestion()" pButton class="p-button-link">skip</button>
+
+</form>

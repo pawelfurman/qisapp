@@ -1,0 +1,15 @@
+.previous-question{
+    display: block;
+    padding: 20px 30px;
+    background: var(--red-200);
+    border-radius: 20px;
+
+    &[correct]{
+        background: var(--green-200);
+    }
+}
+
+ul{
+    padding: 0;
+    margin: 0;
+}

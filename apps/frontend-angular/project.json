@@ -1,0 +1,106 @@
+{
+  "projectType": "application",
+  "root": "apps/frontend-angular",
+  "sourceRoot": "apps/frontend-angular/src",
+  "prefix": "qis",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/apps/frontend-angular",
+        "index": "apps/frontend-angular/src/index.html",
+        "main": "apps/frontend-angular/src/main.ts",
+        "polyfills": "apps/frontend-angular/src/polyfills.ts",
+        "tsConfig": "apps/frontend-angular/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/frontend-angular/src/favicon.ico",
+          "apps/frontend-angular/src/assets"
+        ],
+        "styles": [
+          "apps/frontend-angular/src/styles.scss",
+          "node_modules/primeng/resources/themes/saga-blue/theme.css",
+          "node_modules/primeng/resources/primeng.min.css",
+          "node_modules/primeicons/primeicons.css",
+          "node_modules/primeflex/primeflex.css"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/frontend-angular/src/environments/environment.ts",
+              "with": "apps/frontend-angular/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "frontend-angular:build:production"
+        },
+        "development": {
+          "browserTarget": "frontend-angular:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "frontend-angular:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/frontend-angular/src/**/*.ts",
+          "apps/frontend-angular/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/apps/frontend-angular"
+      ],
+      "options": {
+        "jestConfig": "apps/frontend-angular/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": [
+    "type:app-frontend"
+  ]
+}

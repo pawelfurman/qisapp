@@ -1,0 +1,36 @@
+<ng-container *ngIf="sets$ | async as sets">
+
+
+<form action="" [formGroup]="form" (submit)="submit()">
+    <div class="grid">
+        <div class="col-6">
+            <p-listbox [checkbox]="true" [filter]="true" [options]="sets" optionValue="id" formControlName="setIds" [multiple]="true">
+                <ng-template let-set pTemplate="item">
+                   {{set.name}} - {{set.description}}
+                </ng-template>
+
+            </p-listbox>
+        </div>
+        <div class="col-6">
+            <div class="field">
+                <label for="repetition" class="block">Repetition</label>
+                <input type="text" name="repetition" pInputText placeholder="Number of repetition" formControlName="repetition">
+            </div>
+            <div class="field">
+                <label for="incorrect-multipiler" class="block">Incorrect Multiplier</label>
+                <input type="text" name="incorrect-multipiler" pInputText placeholder="IncorrectMultiplier" formControlName="incorrectMultiplier">
+            </div>
+            <div class="field">
+                <label for="" class="block">Reverse</label>
+                <p-inputSwitch formControlName="reverse" label="Reverse"></p-inputSwitch>
+            </div>
+                   
+        </div>
+    </div>
+    <div class="col-12">
+        <button type="submit" pButton label="Start"></button>
+    </div>
+</form>
+
+
+</ng-container>

@@ -1,0 +1,28 @@
+<ng-container *ngIf="vm$ | async as vm">
+    <form action="" [formGroup]="form" (submit)="addQuestion()">
+        <div class="grid">
+            <div class="col-6">
+                <input #firstField class="p-inputtext-sm first-field" type="text" placeholder="First Value" formControlName="firstValue" pInputText>
+            </div>
+            <div class="col-6">
+                <input class="p-inputtext-sm" type="text" placeholder="Second Value" formControlName="secondValue" pInputText>
+            </div>
+            <div class="col-6">
+                <input class="p-inputtext-sm" type="text" placeholder="First Value Collocation" formControlName="firstValueCollocation" pInputText>
+            </div>
+            <div class="col-6">
+                <input class="p-inputtext-sm" type="text" placeholder="Second Value Collocation" formControlName="secondValueCollocation" pInputText>
+            </div>
+            <div class="col-6">
+                <input class="p-inputtext-sm" type="text" placeholder="First Value Usage" formControlName="firstValueUsage" pInputText>
+            </div>
+            <div class="col-6">
+                <input class="p-inputtext-sm" type="text" placeholder="Second Value Usage" formControlName="secondValueUsage" pInputText>
+            </div>
+            <div class="col-12 form-buttons">
+                <button [loading]="vm.processing" pButton type="submit" class="p-button-sm" label="Save"></button>
+                <button pButton type="button" class="p-button-danger p-button-sm" (click)="reset()">Reset</button>
+            </div>
+        </div>
+    </form>
+</ng-container>

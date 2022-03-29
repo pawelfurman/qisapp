@@ -1,0 +1,19 @@
+
+<ng-container [ngTemplateOutlet]="row" [ngTemplateOutletContext]="{processing: isDeleteProcessing$ | async}"></ng-container>
+
+<ng-template #row let-processing="processing">
+    <div class="grid align-items-center mt-0">
+        <div class="col-1">
+            <i class="pi pi-spin pi-spinner" *ngIf="processing"></i>
+        </div>
+        <div class="col-9">
+            <strong>Do you really want to delete this Set?</strong>
+        </div>
+        <div class="col-2 flex justify-content-end">
+            <button [loading]="processing" (click)="confirmDelete()" pButton icon="pi pi-thumbs-up" class="p-button-success"></button>
+            <button [disabled]="processing" (click)="rejectDelete()" pButton class="p-button-danger ml-1" icon="pi pi-times"></button>
+        </div>
+    </div>
+    
+</ng-template>
+

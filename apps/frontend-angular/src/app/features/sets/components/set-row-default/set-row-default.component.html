@@ -1,0 +1,11 @@
+<div class="grid align-items-center mt-0">
+    <div class="col-1">{{id}}</div>
+    <div class="col-3">{{name}}</div>
+    <div class="col-6">{{description}}</div>
+    <div class="col-2 flex justify-content-end">
+        <button (click)="checkDetails()" pButton icon="pi pi-info-circle"></button>
+        <button (click)="editSet()" pButton icon="pi pi-pencil" class="ml-1"></button>
+        <button (click)="removeSet()" pButton class="p-button-danger ml-1" icon="pi pi-trash" [loading]="(isDeletePossibilityProcessing$ | async)!"></button>
+        
+    </div>
+</div>

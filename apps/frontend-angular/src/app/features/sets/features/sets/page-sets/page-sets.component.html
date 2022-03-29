@@ -1,0 +1,12 @@
+<router-outlet></router-outlet>
+
+
+<p-card header="Sets">
+    <qis-set-add-form></qis-set-add-form>
+    <ng-container *ngIf="setsLoading$ | async">
+        loading
+    </ng-container>
+    <ng-container *ngIf="sets$ | async as sets">
+        <qis-set-table [sets]="sets"></qis-set-table>
+    </ng-container>
+</p-card>

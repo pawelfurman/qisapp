@@ -1,0 +1,32 @@
+.side-buttons{
+    display: flex;
+    align-items: center;
+
+    > * {
+        margin: 0 10px;
+        text-decoration: none;
+    }
+
+}
+
+ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    li{
+        border-bottom: 1px solid #ccc;
+    }
+
+}
+
+a{
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    padding: 15px 10px;
+    display: block;
+    i{
+        margin-right: 15px;
+    }
+}

@@ -1,0 +1,20 @@
+<ng-container *ngIf="vm$ | async as vm">
+    <fa-exercise-form [question]="vm.currentQuestion"></fa-exercise-form>
+    
+    <fa-exercise-previous-question *ngIf="vm.previousQuestion" [question]="vm.previousQuestion" [isCorrect]="vm.previousQuestionCorrectness"></fa-exercise-previous-question>
+
+
+    <fa-exercise-stats
+        [allQuestions]="vm.allQuestions"
+        [goodAnswers]="vm.goodAnswers"
+        [wrongAnswers]="vm.wrongAnswers"
+        [allTries]="vm.allTries"
+        [allToGuess]="vm.allToGuess"
+        [progress]="vm.progress"
+        [effectiveness]="vm.effectiveness"
+    ></fa-exercise-stats>
+
+    <div class="text-center" *ngIf="!vm.currentQuestion">
+        <h2>The End!!</h2>
+    </div>
+</ng-container>

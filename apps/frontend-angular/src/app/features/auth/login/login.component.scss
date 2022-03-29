@@ -1,0 +1,71 @@
+:host{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    width: 80%;
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+
+    h2,h6{
+        padding: 0;
+        margin: 0;
+    }
+
+    h2{
+        font-weight: 400;
+        font-size: 2rem;
+        margin-bottom: 10px;
+        color: #222;
+    }
+    h6{
+        font-weight: 300;
+        font-size: 1rem;
+        color: #777;
+        margin-bottom: 40px;
+    }
+
+    &-input{
+        padding-bottom: 30px;
+        position: relative;
+
+        input {
+            text-align: center;
+        }
+
+        &-tip{
+            font-size: .9rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            
+            i{
+                margin-right: 5px;
+            }
+        }
+    
+    }
+
+    &-lock-icon{
+        margin-bottom: 20px;
+        font-weight: 400;
+        color: #222;
+    }
+
+
+}

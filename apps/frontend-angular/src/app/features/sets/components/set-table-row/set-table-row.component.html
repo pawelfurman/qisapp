@@ -1,0 +1,29 @@
+<ng-container *ngIf="vm$ | async as vm">
+
+
+<ng-container [ngSwitch]="vm.template">
+    <ng-container *ngSwitchCase="'default'" [ngTemplateOutlet]="default"></ng-container>
+    <ng-container *ngSwitchCase="'edition'" [ngTemplateOutlet]="edition"></ng-container>
+    <ng-container *ngSwitchCase="'deletion'" [ngTemplateOutlet]="deletion"></ng-container>
+    <ng-container *ngSwitchCase="'deletion-inability'" [ngTemplateOutlet]="deletionInability"></ng-container>
+</ng-container>
+
+<ng-template #default>
+    <qis-set-row-default [id]="vm.setId" [name]="name" [description]="description"></qis-set-row-default>
+</ng-template>
+
+
+<ng-template #edition>
+    <qis-set-row-edition [id]="vm.setId" [name]="name" [description]="description"></qis-set-row-edition>
+</ng-template>
+
+<ng-template #deletion>
+    <qis-set-row-deletion [id]="vm.setId"></qis-set-row-deletion>
+</ng-template>
+
+<ng-template #deletionInability>
+    <qis-set-row-deletion-inability [id]="vm.setId"></qis-set-row-deletion-inability>
+</ng-template>
+
+
+</ng-container>

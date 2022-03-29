@@ -1,0 +1,24 @@
+
+
+<ng-container [ngTemplateOutlet]="edition" [ngTemplateOutletContext]="{processing: processing$ | async}"></ng-container>
+
+<ng-template #edition let-processing="processing">
+    <form [formGroup]="editForm" (submit)="saveChanges()">
+        <div class="grid align-items-center mt-0">
+            <div class="col-1">
+                <span *ngIf="!processing">{{id}}</span>
+                <i class="pi pi-spin pi-spinner" *ngIf="processing"></i>
+            </div>
+            <div class="col-3">
+                <input formControlName="name" class="edit-input" pInputText>
+            </div>
+            <div class="col-6">
+                <input formControlName="description" class="edit-input" pInputText>
+            </div>
+            <div class="col-2 text-right">
+                <button type="button" [loading]="processing" (click)="saveChanges()" pButton icon="pi pi-check"  class="p-button-success"></button>
+                <button type="button" [disabled]="processing" (click)="rejectChanges()" pButton class="p-button-danger ml-1" icon="pi pi-times"></button>
+            </div>
+        </div>
+    </form>
+</ng-template>

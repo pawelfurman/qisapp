@@ -1,0 +1,14 @@
+<main>
+    <ng-container *ngIf="isLogged$ | async">
+        <qis-header></qis-header>
+    </ng-container>
+
+
+    <ng-container *ngIf="isLogged$ | async">
+        <qis-aside></qis-aside>
+    </ng-container>
+
+    <section>
+        <router-outlet></router-outlet>
+    </section>
+</main>

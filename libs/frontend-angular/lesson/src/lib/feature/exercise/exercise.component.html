@@ -1,0 +1,5 @@
+<div *ngIf="questionsLoading$ | async" class="exercise-loader">
+    <i class="pi pi-spin pi-spinner"></i>
+</div>
+
+<fa-exercise-wrapper *ngIf="questionsLoaded$ | async"></fa-exercise-wrapper>

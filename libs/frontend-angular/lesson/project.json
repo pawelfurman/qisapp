@@ -1,0 +1,30 @@
+{
+  "projectType": "library",
+  "root": "libs/frontend-angular/lesson",
+  "sourceRoot": "libs/frontend-angular/lesson/src",
+  "prefix": "fa",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/frontend-angular/lesson"
+      ],
+      "options": {
+        "jestConfig": "libs/frontend-angular/lesson/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/frontend-angular/lesson/src/**/*.ts",
+          "libs/frontend-angular/lesson/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "type:fa-feature"
+  ]
+}

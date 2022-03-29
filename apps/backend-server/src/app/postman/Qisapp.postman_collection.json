@@ -1,0 +1,240 @@
+{
+	"info": {
+		"_postman_id": "1e3c76dc-9d86-484a-8eb1-4ad267500ee1",
+		"name": "Qisapp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Sets",
+			"item": [
+				{
+					"name": "Questions",
+					"item": [
+						{
+							"name": "[POST] Create Question",
+							"request": {
+								"method": "POST",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "[GET] Get Question",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "[GET] Get Questions",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/sets/2/questions",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"sets",
+										"2",
+										"questions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[PUT] Update Question",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstValueUsage\": \"new Value2\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/sets/2/questions/2",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"sets",
+										"2",
+										"questions",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "[DELETE] Delete Question",
+							"request": {
+								"method": "DELETE",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "[GET] Get Sets",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "[GET] Get Set",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "[POST] Create Set",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/sets",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"sets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[PUT] Update Set",
+					"request": {
+						"method": "PUT",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "[DELETE] Delete Set",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/sets/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"sets",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "[POST] Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"token\", pm.response.json().token);",
+									"pm.environment.set(\"userId\", pm.response.json().id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"admin\",\n    \"password\": \"admin\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[GET] Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/logout",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

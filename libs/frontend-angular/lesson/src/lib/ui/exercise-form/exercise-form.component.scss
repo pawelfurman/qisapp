@@ -1,0 +1,18 @@
+form{
+    padding:10px 0;
+}
+
+input{
+    width: 100%;
+
+    &[disabled]{
+        opacity: 1;
+        color: #555;
+        font-weight: 600;
+    }
+}
+
+[type="submit"]{
+    width: 100%;
+    margin-top: 10px;
+}
