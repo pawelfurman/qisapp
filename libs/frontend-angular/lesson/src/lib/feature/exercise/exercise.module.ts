@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ExerciseWrapperModule } from '../../ui/exercise-wrapper/exercise-wrapper.module';
+import { ExerciseWrapperModule } from '../../containers/exercise-wrapper/exercise-wrapper.module';
+import { ExerciseStore } from '../../store/exercise.store';
 import { ExerciseRoutingModule } from './exercise-routing.module';
 import { PageExerciseComponent } from './exercise.component';
 
@@ -14,7 +15,7 @@ import { PageExerciseComponent } from './exercise.component';
     CommonModule,
     ExerciseRoutingModule,
     ExerciseWrapperModule,
-    
-  ]
+  ],
+  providers: [ExerciseStore]
 })
 export class ExerciseModule { }

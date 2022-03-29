@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { ShellRoutingModule } from './shell-routing.module';
 import { ShellComponent } from './shell.component';
-import { LessonCreatorModule } from '../../ui/lesson-creator/lesson-creator.module';
+import { LessonCreatorModule } from '../../containers/lesson-creator/lesson-creator.module';
 
 
 

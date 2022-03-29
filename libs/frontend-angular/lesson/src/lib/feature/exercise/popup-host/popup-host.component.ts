@@ -18,7 +18,6 @@ export class PopupHostComponent implements OnDestroy {
       takeUntil(this.destroy$)
     ).subscribe(
       (params) => {
-        console.log('console.log', params);
  
 
         const ref = this.dialogService.open(PageExerciseComponent, {

@@ -1,9 +1,10 @@
-import { ExerciseEngineService } from './exercise-engine.service';
 import { Injectable } from '@angular/core';
 import { ComponentStore, tapResponse } from '@ngrx/component-store';
-import { Observable, tap, switchMap, from, mergeMap, delay, toArray, map } from 'rxjs';
-import { LessonService } from '../../data-access/lesson.service';
-import { Question } from '../../frontend-angular-lesson.types';
+import { delay, from, map, mergeMap, Observable, switchMap, tap, toArray } from 'rxjs';
+import { LessonService } from '../data-access/lesson.service';
+import { ExerciseEngineService } from '../utils/exercise-engine.service';
+import { Question } from '../frontend-angular-lesson.types';
+
 
 
 export type ExerciseConfig = {
@@ -108,6 +109,11 @@ export class ExerciseStore extends ComponentStore<ExerciseState> {
       wrongAnswers: state.wrongAnswers + 1,
       lastAnswerCorrectness: false
     }
+  })
+
+
+  setInitialState = this.updater(() => {
+    return initialState
   })
 
   /** Effects */

@@ -35,7 +35,7 @@ export class LessonStore extends ComponentStore<LessonState> {
 
   /** Effects */
 
-  readonly fetchSets = this.effect((params$: Observable<any>) => params$.pipe(
+  readonly fetchSets = this.effect((params$: Observable<unknown>) => params$.pipe(
     switchMap( () => this.service.fetchSets()),
     tap(() => this.patchState({setsLoading: true})),
     delay(300),
@@ -52,7 +52,6 @@ export class LessonStore extends ComponentStore<LessonState> {
   readonly fetchQuestions = this.effect((setIds$: Observable<number[]>) => {
     return setIds$.pipe(
       tap(_ => this.patchState({questionsLoading: true})),
-      tap(x => console.log(x)),
       switchMap((setIds) => from(setIds).pipe(
         mergeMap((setId) => this.service.fetchQuestions(setId).pipe(delay(300))),
         toArray()
@@ -62,7 +61,6 @@ export class LessonStore extends ComponentStore<LessonState> {
       }),
       tapResponse(
         (questions) => {
-          console.log('1uestoin', questions)
           this.patchState({questionsLoading: false, questionsLoaded: true, questions})
         },
         () => {

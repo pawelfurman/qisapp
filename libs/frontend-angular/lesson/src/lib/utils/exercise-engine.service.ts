@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Question } from '../../frontend-angular-lesson.types';
+import { Question } from '../frontend-angular-lesson.types';
 
 
 @Injectable()
@@ -74,5 +74,24 @@ export class ExerciseEngineService {
       secondValueCollocation: question.firstValueCollocation || '',
       secondValueUsage: question.firstValueUsage || ''
     }
+  }
+
+  normalizeString(str: string){
+    return str
+    .replace(/ /gi, "")
+    .toLowerCase()
+    .split(',')
+    .sort((a:string,b: string) => a > b ? 1:-1)
+    .join(',')
+    .normalize('NFD').replace(/([\u0300-\u036f]|[^0-9a-zA-Z\s])/g, '')
+  }
+
+  /**
+   * Return true if answers are the same, return false if not
+   * @param firstAnswer 
+   * @param secondAnswer 
+   */
+  compareAnswers(firstAnswer: string, secondAnswer: string): boolean{
+    return this.normalizeString(firstAnswer) === this.normalizeString(secondAnswer)
   }
 }

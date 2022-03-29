@@ -1,17 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
 import { map, pairwise, startWith } from 'rxjs';
-import { ExerciseEngineService } from '../../feature/exercise/exercise-engine.service';
-import { ExerciseStore } from './../../feature/exercise/exercise.store';
+import { ExerciseEngineService } from '../utils/exercise-engine.service';
+import { ExerciseStore } from './exercise.store';
 
-export type ExerciseWrapperState = Record<string, never>
-
-const initialState: ExerciseWrapperState = {};
 
 @Injectable()
-export class ExerciseWrapperStore extends ComponentStore<ExerciseWrapperState> {
+export class ExerciseSelectors extends ComponentStore<never> {
   constructor(private exerciseStore: ExerciseStore, private exerciseEngine: ExerciseEngineService) {
-    super(initialState);
+    super();
   }
 
 
@@ -66,7 +63,7 @@ export class ExerciseWrapperStore extends ComponentStore<ExerciseWrapperState> {
   )
 
   
-  readonly vm$ = this.select(
+  readonly exerciseWrapperVm$ = this.select(
     this.goodAnswers$,
     this.wrongAnswers$,
     this.allTries$,

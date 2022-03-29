@@ -1,6 +1,5 @@
-import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ExerciseStore } from '../../feature/exercise/exercise.store';
 import { Question } from '../../frontend-angular-lesson.types';
 
 @Component({
@@ -25,7 +24,7 @@ export class ExerciseFormComponent {
       this.form.disable()
     }
   }
-  get question(){
+  get question(): Question{
     return this._question
   }
 
@@ -34,42 +33,20 @@ export class ExerciseFormComponent {
     secondValue: ['']
   })
 
-  @ViewChild('firstValueField', {static: true}) firstValueField!: ElementRef<HTMLInputElement>
   @ViewChild('secondValueField', {static: true}) secondValueField!: ElementRef<HTMLInputElement>
 
-  constructor(private fb: FormBuilder, private exerciseStore: ExerciseStore) { }
+  @Output() checkAnswer:EventEmitter<[string, string]> = new EventEmitter()
+  @Output() skipAnswer:EventEmitter<void> = new EventEmitter()
 
+  constructor(private fb: FormBuilder) { }
 
-
-  submitAnswer(){
+  submit(){
     const value = this.form.getRawValue()
-
-
-    const firstValue = this.normalizeString(value.firstValue);
-    const secondValue = this.normalizeString(value.secondValue);
-    const correctFirstValue = this.normalizeString(this.question?.firstValue as string);
-    const correctSecondValue = this.normalizeString(this.question?.secondValue as string);
-
-    if(firstValue === correctFirstValue && secondValue === correctSecondValue){
-      this.exerciseStore.correctAnswer()
-    } else {
-      this.exerciseStore.incorrectAnswer()
-    }
-
+    this.checkAnswer.emit([value.secondValue, this.question.secondValue])
   }
 
-  normalizeString(word: string){
-    return word
-      .replace(/ /gi, "")
-      .toLowerCase()
-      .split(',')
-      .sort((a:string,b: string) => a > b ? 1:-1)
-      .join(',')
-      .normalize('NFD').replace(/([\u0300-\u036f]|[^0-9a-zA-Z\s])/g, '')
-  }
-
-  skipQuestion(){
-    this.exerciseStore.correctAnswer()
+  skip(){
+    this.skipAnswer.emit()
   }
 
 }

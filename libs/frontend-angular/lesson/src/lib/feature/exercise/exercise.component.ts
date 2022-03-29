@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, OnDestroy } from '@angular/core';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { ExerciseStore } from './exercise.store';
+import { ExerciseStore } from '../../store/exercise.store';
 
 export type ExerciseQueryParams = {
   setIds: string,
@@ -13,12 +13,9 @@ export type ExerciseQueryParams = {
   selector: 'fa-page-exercise',
   templateUrl: './exercise.component.html',
   styleUrls: ['./exercise.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [ExerciseStore]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PageExerciseComponent implements OnInit {
-
-
+export class PageExerciseComponent implements OnInit, OnDestroy {
   questionsLoaded$ = this.exerciseStore.questionsLoaded$
   questionsLoading$ = this.exerciseStore.questionsLoading$
 
@@ -33,8 +30,12 @@ export class PageExerciseComponent implements OnInit {
       incorrectMultiplier: Number(data.incorrectMultiplier),
       reverse:data.reverse === 'true' 
     })
-
+    
     this.exerciseStore.fetchQuestions(data.setIds.split(',').map(id => Number(id)))
+
   }
 
+  ngOnDestroy(): void {
+      this.exerciseStore.setInitialState()
+  }
 }

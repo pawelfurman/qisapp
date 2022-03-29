@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Question } from '../../frontend-angular-lesson.types';
 
 @Component({
   selector: 'fa-exercise-previous-question',
   templateUrl: './exercise-previous-question.component.html',
-  styleUrls: ['./exercise-previous-question.component.scss']
+  styleUrls: ['./exercise-previous-question.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExercisePreviousQuestionComponent {
 

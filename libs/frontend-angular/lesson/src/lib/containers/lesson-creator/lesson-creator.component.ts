@@ -1,4 +1,4 @@
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LessonStore } from '../../store/lesson.store';
@@ -17,10 +17,10 @@ export class LessonCreatorComponent implements OnInit {
   constructor(private fb: FormBuilder, private lessonStore: LessonStore, private router: Router) { }
 
   form = this.fb.group({
-    setIds: [],
-    repetition: [2],
-    incorrectMultiplier: [2],
-    reverse: true
+    setIds: ['', Validators.required],
+    repetition: [2, Validators.required],
+    incorrectMultiplier: [2, Validators.required],
+    reverse: [true]
   })
 
   ngOnInit(): void {
@@ -28,11 +28,13 @@ export class LessonCreatorComponent implements OnInit {
   }
 
   submit(){
-    const value = this.form.value;
-    const setIds = value.setIds.join(',');
-    const repetition = value.repetition;
-    const incorrectMultiplier = value.incorrectMultiplier;
-    const reverse = value.reverse;
-    this.router.navigate(['lesson/exercise'], {queryParams: {setIds, repetition, incorrectMultiplier, reverse}})
+    if(this.form.valid){
+      const value = this.form.value;
+      const setIds = value.setIds.join(',');
+      const repetition = value.repetition;
+      const incorrectMultiplier = value.incorrectMultiplier;
+      const reverse = value.reverse;
+      this.router.navigate(['lesson/exercise'], {queryParams: {setIds, repetition, incorrectMultiplier, reverse}})
+    }
   }
 }
