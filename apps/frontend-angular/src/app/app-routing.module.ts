@@ -25,12 +25,6 @@ const routes: Routes = [
     canActivate: [AuthTokenGuardGuard]
   },
   {
-    path: 'exam',
-    loadChildren: () => import('./features/exam/exam.module').then(m => m.ExamModule),
-    canLoad: [AuthTokenGuardGuard],
-    canActivate: [AuthTokenGuardGuard]
-  },
-  {
     path: 'lesson',
     loadChildren: () => import('@qisapp/frontend-angular/lesson').then(m => m.FrontendAngularLessonModule),
     canLoad: [AuthTokenGuardGuard],

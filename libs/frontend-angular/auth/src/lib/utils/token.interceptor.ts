@@ -4,7 +4,7 @@ import {
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map, mergeMap, Observable, take } from 'rxjs';
-import { selectToken } from '@qisapp/frontend-angular/auth';
+import { selectToken } from '../store/auth.feature';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {

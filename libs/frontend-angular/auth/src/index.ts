@@ -2,6 +2,7 @@ export { AuthStoreModule } from './lib/store/store.module';
 export { AuthTokenGuardGuard } from './lib/utils/auth-token-guard.guard'
 export { LocalStorageService } from './lib/utils/local-storage.service'
 export { LoginActivationGuard } from './lib/utils/login-activation.guard'
+export { TokenInterceptor } from './lib/utils/token.interceptor'
 
 export * from './lib/store/auth.selectors'
 export * from './lib/store/auth.actions'

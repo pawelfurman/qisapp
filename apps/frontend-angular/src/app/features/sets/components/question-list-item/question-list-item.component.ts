@@ -1,4 +1,4 @@
-import { hideListItem, showListItem } from '../../../../utils/animations';
+import { hideListItem, showListItem } from '@qisapp/shared';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, InjectionToken, Input, OnInit } from '@angular/core';
 import { Question } from '../../features/questions/questions.types';

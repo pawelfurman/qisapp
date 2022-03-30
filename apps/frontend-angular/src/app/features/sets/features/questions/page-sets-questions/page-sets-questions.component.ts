@@ -2,12 +2,10 @@ import { transition, trigger, useAnimation } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { QuestionsStore } from '../questions.store';
-import { hideListItem, showListItem } from '../../../../../utils/animations';
-
+import { hideListItem, showListItem } from '@qisapp/shared';
 @Component({
   templateUrl: './page-sets-questions.component.html',
   styleUrls: ['./page-sets-questions.component.scss'],
-  // providers: [QuestionsStore]
   animations: [
     trigger('enterLeaveAnimation', [
       transition(':enter',[

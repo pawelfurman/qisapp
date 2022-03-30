@@ -21,7 +21,8 @@
       ],
       "@qisapp/frontend-angular/lesson": [
         "libs/frontend-angular/lesson/src/index.ts"
-      ]
+      ],
+      "@qisapp/shared": ["libs/shared/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

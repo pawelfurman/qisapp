@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "../../libs/shared/src/lib/utils/animations.ts"],
   "compilerOptions": {
     "types": ["jest", "node"]
   }

@@ -1,7 +1,7 @@
 import { transition, trigger, useAnimation } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { hideListItem, showListItem } from '@qisapp/shared';
 import { Set } from '../../features/sets/sets.types';
-import { hideListItem, showListItem } from '../../../../utils/animations';
 import { SetTableStore } from './set-table.store';
 
 @Component({

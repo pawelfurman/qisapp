@@ -11,9 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { initializeApp } from './app.init';
 // import { AuthModule } from './features/auth/auth.module';
-import { AuthStoreModule, FrontendAngularAuthModule, LocalStorageService } from '@qisapp/frontend-angular/auth';
+import { AuthStoreModule, LocalStorageService, TokenInterceptor } from '@qisapp/frontend-angular/auth';
 import { LayoutModule } from './features/layout/layout.module';
-import { TokenInterceptor } from './utils/token.interceptor';
 
 
 @NgModule({
