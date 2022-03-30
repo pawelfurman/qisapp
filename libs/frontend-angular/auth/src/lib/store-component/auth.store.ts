@@ -2,8 +2,8 @@ import { Injectable } from "@angular/core";
 import { ComponentStore, tapResponse } from "@ngrx/component-store";
 import { Store } from '@ngrx/store';
 import { bufferCount, EMPTY, filter, map, Observable, startWith, switchMap, tap, timer } from "rxjs";
+import { AuthService } from "../data-access/auth.service";
 import { loginSuccess } from '../store/auth.actions';
-import { AuthService } from '../auth.service';
 
 type InputStatus = "EMPTY" | "PENDING" | "INVALID" | "VALID"
 
@@ -27,8 +27,8 @@ export class LoginStore extends ComponentStore<LoginState>{
     })
 
 
-    readonly typePassword = this.effect((event$: Observable<any>) => {
-        return event$.pipe(
+    readonly typePassword = this.effect((password$: Observable<any>) => {
+        return password$.pipe(
             tap((_) => { this.changeStatus("PENDING") }),
             
             switchMap(password => {

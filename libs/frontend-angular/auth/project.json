@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/frontend-angular/auth",
+  "sourceRoot": "libs/frontend-angular/auth/src",
+  "prefix": "fa",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/frontend-angular/auth"],
+      "options": {
+        "jestConfig": "libs/frontend-angular/auth/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/frontend-angular/auth/src/**/*.ts",
+          "libs/frontend-angular/auth/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

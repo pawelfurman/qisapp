@@ -1,8 +1,13 @@
 import { FormControlStatus } from "@angular/forms"
 import { createFeature, createReducer, on } from "@ngrx/store"
-import { HttpRequestStatus } from "../../../app.types"
 import * as authActions from "./auth.actions"
 
+export enum HttpRequestStatus {
+    IDLE,
+    PROCESSING,
+    PROCESSED,
+    ERROR
+}
 
 export const authKey = 'auth'
 

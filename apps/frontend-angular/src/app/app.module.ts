@@ -1,4 +1,4 @@
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,8 +10,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { initializeApp } from './app.init';
-import { AuthModule } from './features/auth/auth.module';
-import { LocalStorageService } from './features/auth/utils/local-storage.service';
+// import { AuthModule } from './features/auth/auth.module';
+import { AuthStoreModule, FrontendAngularAuthModule, LocalStorageService } from '@qisapp/frontend-angular/auth';
 import { LayoutModule } from './features/layout/layout.module';
 import { TokenInterceptor } from './utils/token.interceptor';
 
@@ -33,8 +33,10 @@ import { TokenInterceptor } from './utils/token.interceptor';
     StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([]),
     AppRoutingModule,
-    AuthModule,
-    LayoutModule
+    // AuthModule,
+    LayoutModule,
+    HttpClientModule,
+    AuthStoreModule
   ],
   providers: [{
     provide: APP_INITIALIZER,

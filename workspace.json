@@ -4,6 +4,7 @@
     "api-contract": "libs/api-contract",
     "backend-server": "apps/backend-server",
     "frontend-angular": "apps/frontend-angular",
+    "frontend-angular-auth": "libs/frontend-angular/auth",
     "frontend-angular-e2e": "apps/frontend-angular-e2e",
     "frontend-angular-lesson": "libs/frontend-angular/lesson"
   }

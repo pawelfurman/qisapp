@@ -1,6 +1,5 @@
-import { createFeatureSelector, createSelector, State } from "@ngrx/store";
-import { HttpRequestStatus } from "../../../app.types";
-import { AuthState } from "./auth.feature";
+import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { AuthState, HttpRequestStatus } from "./auth.feature";
 
 const selectAuth = createFeatureSelector<AuthState>('auth');
 
@@ -9,5 +8,5 @@ export const isLoginProcessing = createSelector(selectAuth, (authState) => {
 })
 
 export const selectIsLogged = createSelector(selectAuth, (authState) => {
-    return !!authState.token.length
+    return !!authState?.token.length
 })

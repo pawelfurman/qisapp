@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectIsLogged } from './features/auth/store/auth.selectors';
+import { selectIsLogged } from '@qisapp/frontend-angular/auth';
 
 @Component({
   selector: 'qis-root',

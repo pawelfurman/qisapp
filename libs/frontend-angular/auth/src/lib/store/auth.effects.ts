@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { catchError, EMPTY, map, of, switchMap, tap } from "rxjs";
-import { AuthService } from "../auth.service";
+import { catchError, map, of, switchMap } from "rxjs";
+import { AuthService } from "../data-access/auth.service";
 import { LocalStorageService } from "../utils/local-storage.service";
-import * as authActions from './auth.actions'
+import * as authActions from './auth.actions';
 
 
 @Injectable()

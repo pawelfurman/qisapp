@@ -1,17 +1,15 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Store } from '@ngrx/store';
 import { Observable, Subscription, tap } from 'rxjs';
-import { LoginStore } from '../store-component/auth.store';
-import { AuthService } from '../auth.service';
+import { LoginStore } from '../../store-component/auth.store';
 
 @Component({
-  selector: 'qis-login',
+  selector: 'fa-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   providers: [LoginStore]
 })
-export class LoginComponent implements OnInit, AfterViewInit {
+export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('loginInput') loginInput!: ElementRef;
 
@@ -19,7 +17,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   passwordValueSub!: Subscription;
   isTyping: boolean = false
 
-  constructor(private api: AuthService, private store: Store, private readonly loginStore: LoginStore) { }
+  constructor(private readonly loginStore: LoginStore) { }
 
   inputStatus$: Observable<string> = this.loginStore.inputStatus$;
 

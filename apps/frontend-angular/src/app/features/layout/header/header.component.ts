@@ -1,18 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { logout } from '../../auth/store/auth.actions';
+import { logout } from '@qisapp/frontend-angular/auth';
 
 @Component({
   selector: 'qis-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent  {
 
   constructor(private store: Store) { }
 
-  ngOnInit(): void {
-  }
 
   logout(){
     this.store.dispatch(logout())

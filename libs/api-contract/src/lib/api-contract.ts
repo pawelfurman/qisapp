@@ -13,7 +13,6 @@ export type ApiQuestion = {
   deletedAt: Date
 }
 
-
 export type ApiSet = {
   id: number,
   name: string,
@@ -24,11 +23,14 @@ export type ApiSet = {
   deletedAt: Date
 }
 
-
 export type ApiUser = {
   id: number,
   username: string,
   password: string
+}
+
+export type ApiUSerLogin  = ApiUser & {
+  token: string
 }
 
 

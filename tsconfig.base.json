@@ -10,24 +10,19 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@qisapp/api-contract": [
-        "libs/api-contract/src/index.ts"
+      "@qisapp/api-contract": ["libs/api-contract/src/index.ts"],
+      "@qisapp/frontend-angular/auth": [
+        "libs/frontend-angular/auth/src/index.ts"
       ],
       "@qisapp/frontend-angular/lesson": [
         "libs/frontend-angular/lesson/src/index.ts"
       ]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }

@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthTokenGuardGuard } from './features/auth/utils/auth-token-guard.guard';
+import { AuthTokenGuardGuard } from '@qisapp/frontend-angular/auth';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
     redirectTo: 'dashboard'
+  },
+  {
+    path: 'login',
+    loadChildren: () => import("@qisapp/frontend-angular/auth").then(m => m.FrontendAngularAuthModule),
   },
   {
     path: 'dashboard',

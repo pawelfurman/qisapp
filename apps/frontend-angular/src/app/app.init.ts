@@ -1,8 +1,7 @@
-import { UserAuth } from './features/auth/store/auth.feature';
-import { loginOnInit } from './features/auth/store/auth.actions';
+
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
-import { LocalStorageService } from './features/auth/utils/local-storage.service';
+import { LocalStorageService, loginOnInit, UserAuth } from "@qisapp/frontend-angular/auth";
 
 
 
