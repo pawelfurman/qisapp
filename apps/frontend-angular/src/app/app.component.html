@@ -5,7 +5,11 @@
 
 
     <ng-container *ngIf="isLogged$ | async">
-        <qis-aside></qis-aside>
+        <qis-aside>
+            <a *qisAsideLink href="#" [routerLink]="['/', 'dashboard']"><i class="pi pi-home"></i>Home</a>
+            <a *qisAsideLink href="#" [routerLink]="['/', 'sets']"><i class="pi pi-database"></i>Sets</a>
+            <a *qisAsideLink href="#" [routerLink]="['/', 'lesson']"><i class="pi pi-star"></i>Lessons</a>
+        </qis-aside>
     </ng-container>
 
     <section>

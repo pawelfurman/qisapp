@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/frontend-angular/dashboard",
+  "sourceRoot": "libs/frontend-angular/dashboard/src",
+  "prefix": "fa",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/frontend-angular/dashboard"],
+      "options": {
+        "jestConfig": "libs/frontend-angular/dashboard/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/frontend-angular/dashboard/src/**/*.ts",
+          "libs/frontend-angular/dashboard/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["type:feature"]
+}

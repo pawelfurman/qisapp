@@ -1,0 +1,7 @@
+<ul>
+    <ng-container *ngFor="let link of links">
+        <li>
+            <ng-container [ngTemplateOutlet]="link.linkTemplate"></ng-container>
+        </li>
+    </ng-container>
+</ul>

@@ -5,8 +5,10 @@
     "backend-server": "apps/backend-server",
     "frontend-angular": "apps/frontend-angular",
     "frontend-angular-auth": "libs/frontend-angular/auth",
+    "frontend-angular-dashboard": "libs/frontend-angular/dashboard",
     "frontend-angular-e2e": "apps/frontend-angular-e2e",
     "frontend-angular-lesson": "libs/frontend-angular/lesson",
+    "frontend-angular-sets": "libs/frontend-angular/sets",
     "shared": "libs/shared"
   }
 }

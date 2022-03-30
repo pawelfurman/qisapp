@@ -19,8 +19,14 @@
       "@qisapp/frontend-angular/auth": [
         "libs/frontend-angular/auth/src/index.ts"
       ],
+      "@qisapp/frontend-angular/dashboard": [
+        "libs/frontend-angular/dashboard/src/index.ts"
+      ],
       "@qisapp/frontend-angular/lesson": [
         "libs/frontend-angular/lesson/src/index.ts"
+      ],
+      "@qisapp/frontend-angular/sets": [
+        "libs/frontend-angular/sets/src/index.ts"
       ],
       "@qisapp/shared": ["libs/shared/src/index.ts"]
     }

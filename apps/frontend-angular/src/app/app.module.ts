@@ -1,3 +1,4 @@
+import { SharedHeaderModule } from './../../../../libs/shared/src/lib/ui/header/header.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,7 +13,7 @@ import { AppComponent } from './app.component';
 import { initializeApp } from './app.init';
 // import { AuthModule } from './features/auth/auth.module';
 import { AuthStoreModule, LocalStorageService, TokenInterceptor } from '@qisapp/frontend-angular/auth';
-import { LayoutModule } from './features/layout/layout.module';
+import { SharedAsideModule } from '@qisapp/shared';
 
 
 @NgModule({
@@ -33,9 +34,10 @@ import { LayoutModule } from './features/layout/layout.module';
     EffectsModule.forRoot([]),
     AppRoutingModule,
     // AuthModule,
-    LayoutModule,
     HttpClientModule,
-    AuthStoreModule
+    AuthStoreModule,
+    SharedAsideModule,
+    SharedHeaderModule
   ],
   providers: [{
     provide: APP_INITIALIZER,

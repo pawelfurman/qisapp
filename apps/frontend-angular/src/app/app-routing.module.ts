@@ -14,13 +14,13 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule),
+    loadChildren: () => import('@qisapp/frontend-angular/dashboard').then(m => m.DashboardModule),
     canLoad: [AuthTokenGuardGuard],
     canActivate: [AuthTokenGuardGuard]
   },
   {
     path: 'sets',
-    loadChildren: () => import('./features/sets/features/sets/sets.module').then(m => m.SetsModule),
+    loadChildren: () => import('@qisapp/frontend-angular/sets').then(m => m.SetsModule),
     canLoad: [AuthTokenGuardGuard],
     canActivate: [AuthTokenGuardGuard]
   },
