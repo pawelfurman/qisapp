@@ -1,9 +1,9 @@
-import { finalize, Subject, takeUntil } from 'rxjs';
-import { PageSetsQuestionsComponent } from '../page-sets-questions/page-sets-questions.component';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { QuestionsStore } from '../questions.store';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Subject, takeUntil } from 'rxjs';
+import { QuestionsStore } from '../../../store/questions.store';
+import { QuestionsComponent } from '../questions.component';
 
 @Component({
   templateUrl: './popup-host.component.html',
@@ -19,7 +19,7 @@ export class PopupHostComponent implements OnDestroy {
       takeUntil(this.destroy$)
     ).subscribe(
       (params) => {
-        const ref = this.dialogService.open(PageSetsQuestionsComponent, {
+        const ref = this.dialogService.open(QuestionsComponent, {
           width: '80vw',
           height: '80vh',
           data: {...params},

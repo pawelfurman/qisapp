@@ -1,10 +1,10 @@
 import { QuestionUpdate } from '../../features/questions/questions.types';
-import { QuestionsService } from '../../features/questions/questions.service';
+import { QuestionsService } from '../../data-access/questions.service';
 import { Injectable } from '@angular/core';
 import { ComponentStore, tapResponse } from '@ngrx/component-store';
 import { Observable, tap, withLatestFrom, switchMap, delay } from 'rxjs';
-import { QuestionsStore } from '../../features/questions/questions.store';
 import { QuestionListItemStore } from '../question-list-item/question-list-item.store';
+import { QuestionsStore } from '../../store/questions.store';
 
 export interface QuestionEditFormState {
   processing: boolean,

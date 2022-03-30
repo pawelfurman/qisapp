@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore, tapResponse } from '@ngrx/component-store';
 import { Observable, tap, delay, switchMap } from 'rxjs';
-import { SetsService } from '../../features/sets/sets.service';
-import { SetsStore } from '../../features/sets/sets.store';
+import { SetsService } from '../../data-access/sets.service';
 import {Set} from '../../features/sets/sets.types' 
+import { SetsStore } from '../../store/sets.store';
 
 export type ComponentMode = "default" | "create"
 

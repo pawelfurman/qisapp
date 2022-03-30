@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore, tapResponse } from '@ngrx/component-store';
 import { delay, Observable, switchMap, tap, withLatestFrom } from 'rxjs';
-import { QuestionsService } from '../../features/questions/questions.service';
-import { QuestionsStore } from '../../features/questions/questions.store';
+import { QuestionsService } from '../../data-access/questions.service';
 import { Question } from '../../features/questions/questions.types';
+import { QuestionsStore } from '../../store/questions.store';
 
 export interface QuestionAddFormState {
   processing: boolean

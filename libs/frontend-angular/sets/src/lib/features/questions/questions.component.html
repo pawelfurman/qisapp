@@ -1,0 +1,5 @@
+<fa-question-add-form></fa-question-add-form>
+<section class="question-list">
+
+    <fa-question-list-item *ngFor="let q of questions$ | async" [question]="q"  @enterLeaveAnimation></fa-question-list-item>
+</section>

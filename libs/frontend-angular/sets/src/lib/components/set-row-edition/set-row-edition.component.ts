@@ -1,11 +1,10 @@
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { SetTableRowStore } from '../set-table-row/set-table-row.store';
-import { Component, Input, OnInit, OnDestroy, ViewChild, ElementRef, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs';
-import { SetTableStore } from '../set-table/set-table.store';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { SetTableStore } from '../../store/set-table.store';
+import { SetTableRowStore } from '../../store/set-table-row.store';
 
 @Component({
-  selector: 'qis-set-row-edition',
+  selector: 'fa-set-row-edition',
   templateUrl: './set-row-edition.component.html',
   styleUrls: ['./set-row-edition.component.scss'],
 })

@@ -1,14 +1,14 @@
-import { PageSetsComponent } from './page-sets/page-sets.component';
+import { SetsComponent } from './sets.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SetsResolverResolver } from './sets-resolver.resolver';
+import { SetsResolver } from './sets.resolver';
 
 
 const routes: Routes = [{
     path: "",
-    component: PageSetsComponent,
+    component: SetsComponent,
     resolve: {
-      sets: SetsResolverResolver
+      sets: SetsResolver
     },
     children: [
       {
@@ -22,7 +22,7 @@ const routes: Routes = [{
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [SetsResolverResolver]
+  providers: [SetsResolver]
   
 })
 export class SetsRoutingModule { }

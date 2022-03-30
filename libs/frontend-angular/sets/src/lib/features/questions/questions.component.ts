@@ -1,11 +1,11 @@
 import { transition, trigger, useAnimation } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { QuestionsStore } from '../questions.store';
 import { hideListItem, showListItem } from '@qisapp/shared';
+import { QuestionsStore } from '../../store/questions.store';
 @Component({
-  templateUrl: './page-sets-questions.component.html',
-  styleUrls: ['./page-sets-questions.component.scss'],
+  templateUrl: './questions.component.html',
+  styleUrls: ['./questions.component.scss'],
   animations: [
     trigger('enterLeaveAnimation', [
       transition(':enter',[
@@ -17,7 +17,7 @@ import { hideListItem, showListItem } from '@qisapp/shared';
     ])
   ]
 })
-export class PageSetsQuestionsComponent implements OnInit {
+export class QuestionsComponent implements OnInit {
 
   questions$ = this.questionStore.entities$
   setId$ = this.questionStore.setId$

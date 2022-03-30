@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SetsStore } from '../sets.store';
-import { Set } from '../sets.types';
+import { SetsStore } from '../../store/sets.store';
+import { Set } from './sets.types';
 
 @Component({
-  templateUrl: './page-sets.component.html',
-  styleUrls: ['./page-sets.component.scss']
+  templateUrl: './sets.component.html',
+  styleUrls: ['./sets.component.scss']
 })
-export class PageSetsComponent {
+export class SetsComponent {
 
   sets$: Observable<Set[] | undefined> = this.setsStore.sets$;
   setsLoading$: Observable<boolean> = this.setsStore.loading$;

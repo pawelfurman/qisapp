@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Set } from '../../features/sets/sets.types';
-import { SetsStore } from '../../features/sets/sets.store';
+import { SetsStore } from '../../store/sets.store';
 import { SetAddFormStore } from './set-add-form.store';
 
 @Component({
-  selector: 'qis-set-add-form',
+  selector: 'fa-set-add-form',
   templateUrl: './set-add-form.component.html',
   styleUrls: ['./set-add-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

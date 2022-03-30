@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SetTableStore } from '../set-table/set-table.store';
+import { SetTableStore } from '../../store/set-table.store';
 
 @Component({
-  selector: 'qis-set-row-deletion-inability',
+  selector: 'fa-set-row-deletion-inability',
   templateUrl: './set-row-deletion-inability.component.html',
   styleUrls: ['./set-row-deletion-inability.component.scss']
 })

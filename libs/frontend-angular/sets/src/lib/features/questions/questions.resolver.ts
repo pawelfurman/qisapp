@@ -3,13 +3,12 @@ import {
   ActivatedRouteSnapshot, Resolve
 } from '@angular/router';
 import { filter, Observable, take, tap } from 'rxjs';
-import { QuestionsService } from './questions.service';
-import { QuestionsStore } from './questions.store';
+import { QuestionsStore } from '../../store/questions.store';
 
 @Injectable()
 export class QuestionsResolver implements Resolve<boolean> {
 
-  constructor(private service: QuestionsService, private questionsStore: QuestionsStore){}
+  constructor(private questionsStore: QuestionsStore){}
 
   resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
     return this.questionsStore.loaded$.pipe(

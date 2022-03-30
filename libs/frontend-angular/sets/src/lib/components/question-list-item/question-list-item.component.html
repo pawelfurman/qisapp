@@ -20,7 +20,7 @@
             <button [loading]="vm.processingDelete" type="button" (click)="removeQuestion()" pButton class="p-button-danger ml-1" icon="pi pi-trash"></button>
         </div>
 
-        <qis-question-edit-form  *ngIf="vm.mode === 'update'" [question]="question" @enterLeaveAnimation></qis-question-edit-form>
+        <fa-question-edit-form  *ngIf="vm.mode === 'update'" [question]="question" @enterLeaveAnimation></fa-question-edit-form>
      
     </div>
 </div>

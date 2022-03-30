@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
-import { Set } from './sets.types';
+import { Set } from '../features/sets/sets.types';
 
 @Injectable({
     providedIn: 'root'

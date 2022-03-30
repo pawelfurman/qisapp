@@ -1,8 +1,8 @@
-import { QuestionsService } from './questions.service';
 import { Injectable } from '@angular/core';
 import { ComponentStore, tapResponse } from '@ngrx/component-store';
 import { Observable, switchMap, tap, withLatestFrom } from 'rxjs';
-import { Question } from './questions.types';
+import { QuestionsService } from '../data-access/questions.service';
+import { Question } from './../features/questions/questions.types';
 
 export interface QuestionsState {
   setId: number,

@@ -1,11 +1,11 @@
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { distinctUntilChanged, filter, skip, tap } from 'rxjs';
+import { QuestionsStore } from '../../store/questions.store';
 import { QuestionAddFormStore } from './question-add-form.store';
-import { QuestionsStore } from '../../features/questions/questions.store';
-import { distinctUntilChanged, filter, tap, finalize, skip } from 'rxjs';
 
 @Component({
-  selector: 'qis-question-add-form',
+  selector: 'fa-question-add-form',
   templateUrl: './question-add-form.component.html',
   styleUrls: ['./question-add-form.component.scss'],
   providers: [QuestionAddFormStore]

@@ -1,18 +1,16 @@
-import { SetsStore } from './sets.store';
 import { Injectable } from '@angular/core';
 import {
-  Router, Resolve,
-  RouterStateSnapshot,
-  ActivatedRouteSnapshot
+  Resolve
 } from '@angular/router';
-import { delay, filter, Observable, of, take, tap } from 'rxjs';
+import { filter, Observable, take, tap } from 'rxjs';
+import { SetsStore } from '../../store/sets.store';
 
 @Injectable()
-export class SetsResolverResolver implements Resolve<boolean> {
+export class SetsResolver implements Resolve<boolean> {
 
   constructor(private setsStore: SetsStore){}
   
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+  resolve(): Observable<boolean> {
     return this.setsStore.loaded$.pipe(
       tap(loaded => {
         if(!loaded){

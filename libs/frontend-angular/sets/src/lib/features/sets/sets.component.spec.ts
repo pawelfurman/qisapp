@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PageSetsQuestionsComponent } from './page-sets-questions.component';
+import { SetsComponent } from './sets.component';
 
-describe('PageSetsQuestionsComponent', () => {
-  let component: PageSetsQuestionsComponent;
-  let fixture: ComponentFixture<PageSetsQuestionsComponent>;
+describe('SetsComponent', () => {
+  let component: SetsComponent;
+  let fixture: ComponentFixture<SetsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PageSetsQuestionsComponent ]
+      declarations: [ SetsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PageSetsQuestionsComponent);
+    fixture = TestBed.createComponent(SetsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

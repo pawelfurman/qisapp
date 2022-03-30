@@ -2,10 +2,10 @@ import { transition, trigger, useAnimation } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { hideListItem, showListItem } from '@qisapp/shared';
 import { Set } from '../../features/sets/sets.types';
-import { SetTableStore } from './set-table.store';
+import { SetTableStore } from '../../store/set-table.store';
 
 @Component({
-  selector: 'qis-set-table',
+  selector: 'fa-set-table',
   templateUrl: './set-table.component.html',
   styleUrls: ['./set-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,12 +21,7 @@ import { SetTableStore } from './set-table.store';
     ])
   ]
 })
-export class SetTableComponent implements OnInit {
+export class SetTableComponent {
 
   @Input() sets!: Set[];
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 }

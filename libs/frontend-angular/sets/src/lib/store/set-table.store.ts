@@ -1,14 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
-import { SetsService } from '../../features/sets/sets.service';
-import { SetsStore } from '../../features/sets/sets.store';
+import { SetsService } from '../data-access/sets.service';
+import { SetsStore } from './sets.store';
 
 export type SetMode = "default" | "edition" | "deletion" | "deletion-inability"
 
-type SetData = {
-  name: string,
-  description: string
-}
 
 export interface SetTableState {
   selectedSetId: number,

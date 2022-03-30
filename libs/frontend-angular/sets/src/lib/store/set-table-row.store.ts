@@ -1,9 +1,9 @@
-import { SetsStore } from '../../features/sets/sets.store';
+import { SetsStore } from './sets.store';
 import { Injectable } from '@angular/core';
 import { ComponentStore, tapResponse } from '@ngrx/component-store';
 import { delay, map, mapTo, Observable, of, switchMap, tap, withLatestFrom } from 'rxjs';
-import { SetTableStore } from '../set-table/set-table.store';
-import { SetsService } from '../../features/sets/sets.service';
+import { SetTableStore } from './set-table.store';
+import { SetsService } from '../data-access/sets.service';
 
 type UpdateData = {
   name: string,
@@ -55,10 +55,14 @@ export class SetTableRowStore extends ComponentStore<SetTableRowState> {
   readonly vm$ = this.select(
     this.setId$,
     this.template$,
-    (setId, template) => {
+    this.processingDelete$,
+    this.processingDeleteCheck$,
+    (setId, template, processingDelete, processingDeleteCheck) => {
       return {
         setId,
-        template
+        template,
+        processingDelete,
+        processingDeleteCheck
       }
     })
 

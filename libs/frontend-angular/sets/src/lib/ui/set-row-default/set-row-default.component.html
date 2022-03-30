@@ -1,0 +1,13 @@
+<div class="grid align-items-center mt-0">
+    <div class="col-1">
+        <span *ngIf="!isProcessing">{{id}}</span>
+        <i class="pi pi-spin pi-spinner" *ngIf="isProcessing"></i>
+    </div>
+    <div class="col-3">{{name}}</div>
+    <div class="col-6">{{description}}</div>
+    <div class="col-2 flex justify-content-end">
+        <button [disabled]="isProcessing" (click)="openQuestionsPopup()" pButton icon="pi pi-info-circle"></button>
+        <button [disabled]="isProcessing" (click)="editSet()" pButton icon="pi pi-pencil" class="ml-1"></button>
+        <button [disabled]="isProcessing" (click)="checkDeleteSet()" pButton class="p-button-danger ml-1" icon="pi pi-trash"></button>
+    </div>
+</div>

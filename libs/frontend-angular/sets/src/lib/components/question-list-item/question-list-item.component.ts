@@ -7,7 +7,7 @@ import { QuestionItemMode, QuestionListItemStore } from './question-list-item.st
 export const CONTEXT_TOKEN = new InjectionToken('edit-context-data')
 
 @Component({
-  selector: 'qis-question-list-item',
+  selector: 'fa-question-list-item',
   templateUrl: './question-list-item.component.html',
   styleUrls: ['./question-list-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,7 +23,7 @@ export const CONTEXT_TOKEN = new InjectionToken('edit-context-data')
     ])
   ]
 })
-export class QuestionListItemComponent implements OnInit {
+export class QuestionListItemComponent {
 
   private _question!: Question;
   @Input()
@@ -38,9 +38,6 @@ export class QuestionListItemComponent implements OnInit {
   vm$ = this.selfStore.vm$;
 
   constructor(private selfStore: QuestionListItemStore) { }
-
-  ngOnInit(): void {
-  }
 
 
 

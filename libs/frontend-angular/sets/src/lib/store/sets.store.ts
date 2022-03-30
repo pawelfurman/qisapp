@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore, tapResponse } from '@ngrx/component-store';
 import { delay, switchMap, tap, Observable } from 'rxjs';
-import { SetsService } from './sets.service';
-import { Set } from './sets.types'
+import { SetsService } from '../data-access/sets.service';
+import { Set } from './../features/sets/sets.types'
 
 
 

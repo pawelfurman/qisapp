@@ -5,7 +5,7 @@ import { QuestionListItemStore } from '../question-list-item/question-list-item.
 import { QuestionEditFormStore } from './question-edit-form.store';
 
 @Component({
-  selector: 'qis-question-edit-form',
+  selector: 'fa-question-edit-form',
   templateUrl: './question-edit-form.component.html',
   styleUrls: ['./question-edit-form.component.scss'],
   providers: [QuestionEditFormStore]

@@ -1,4 +1,4 @@
-import { SetTableStore } from './set-table.store';
+import { SetTableStore } from '../../store/set-table.store';
 
 describe('SetTableStore', () => {
   const componentStore = new SetTableStore();
