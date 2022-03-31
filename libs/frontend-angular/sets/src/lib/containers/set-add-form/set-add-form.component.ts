@@ -11,7 +11,7 @@ import { SetAddFormStore } from './set-add-form.store';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [SetAddFormStore]
 })
-export class SetAddFormComponent implements OnInit {
+export class SetAddFormComponent {
 
   @ViewChild('form') set formElement(value: ElementRef){
     if(!value){
@@ -27,10 +27,7 @@ export class SetAddFormComponent implements OnInit {
   vm$ = this.setAddFormStore.vm$;
 
 
-  constructor(private fb: FormBuilder, private setsStore: SetsStore, private setAddFormStore: SetAddFormStore) { }
-
-  ngOnInit(): void {
-  }
+  constructor(private fb: FormBuilder, private setAddFormStore: SetAddFormStore) { }
 
 
   createSet(){

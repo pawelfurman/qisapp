@@ -1,7 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { distinctUntilChanged, filter, skip, tap } from 'rxjs';
-import { QuestionsStore } from '../../store/questions.store';
 import { QuestionAddFormStore } from './question-add-form.store';
 
 @Component({
@@ -10,7 +9,7 @@ import { QuestionAddFormStore } from './question-add-form.store';
   styleUrls: ['./question-add-form.component.scss'],
   providers: [QuestionAddFormStore]
 })
-export class QuestionAddFormComponent implements OnInit {
+export class QuestionAddFormComponent {
 
   @ViewChild('firstField') firstField!: ElementRef<HTMLInputElement>
 
@@ -26,7 +25,7 @@ export class QuestionAddFormComponent implements OnInit {
   vm$ = this.questionAddFormStore.vm$
   
 
-  constructor( private fb: FormBuilder, private questionAddFormStore: QuestionAddFormStore, private questionStore: QuestionsStore) {
+  constructor( private fb: FormBuilder, private questionAddFormStore: QuestionAddFormStore) {
     this.questionAddFormStore.processing$.pipe(
       skip(1),
       distinctUntilChanged(),
@@ -37,10 +36,6 @@ export class QuestionAddFormComponent implements OnInit {
         this.focusOnFirstField()
       })
     ).subscribe()
-  }
-
-  ngOnInit(): void {
-
   }
 
   addQuestion(){
