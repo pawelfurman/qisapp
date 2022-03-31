@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SetTableStore } from '../../store/set-table.store';
 import { SetTableRowStore } from '../../store/set-table-row.store';
@@ -13,15 +13,17 @@ export class SetRowEditionComponent implements OnInit, OnDestroy {
   @Input() id!: number;
   @Input() name!: string;
   @Input() description!: string;
+  @Input() isProcessing!: boolean
+
+  @Output() confirm: EventEmitter<{name: string, description: string}> = new EventEmitter()
+  @Output() cancel: EventEmitter<void> = new EventEmitter()
 
   editForm: FormGroup = this.fb.group({
     name: [this.name],
     description: [this.description]
   })
 
-  processing$ = this.setTableRowStore.processingUpdate$
-
-  constructor(private setTableStore: SetTableStore, private setTableRowStore: SetTableRowStore, private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.editForm.patchValue({
@@ -36,11 +38,11 @@ export class SetRowEditionComponent implements OnInit, OnDestroy {
 
   saveChanges(){
     this.editForm.disable()
-    this.setTableRowStore.updateSet(this.editForm.value)
+    this.confirm.emit(this.editForm.value)
   }
 
   rejectChanges(){
-    this.setTableStore.setInitialView()
     this.editForm.reset()
+    this.cancel.emit()
   }
 }

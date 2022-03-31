@@ -57,12 +57,19 @@ export class SetTableRowStore extends ComponentStore<SetTableRowState> {
     this.template$,
     this.processingDelete$,
     this.processingDeleteCheck$,
-    (setId, template, processingDelete, processingDeleteCheck) => {
+    this.processingUpdate$,
+    (
+      setId,
+      template,
+      processingDelete,
+      processingDeleteCheck,
+      processingUpdate) => {
       return {
         setId,
         template,
         processingDelete,
-        processingDeleteCheck
+        processingDeleteCheck,
+        processingUpdate
       }
     })
 

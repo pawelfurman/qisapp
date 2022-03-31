@@ -40,4 +40,24 @@ export class SetTableRowComponent {
   onOpenQuestions(id: number){
     this.router.navigateByUrl(`sets/${id}/questions`)
   }
+
+  onDeleteConfirm(id: number){
+    this.setTableRowStore.deleteSet(id)
+  }
+
+  onDeleteCancel(){
+    this.setTableStore.setInitialView()
+  }
+
+  onDeleteMessageConfirm(){
+    this.setTableStore.setInitialView()
+  }
+
+  onEditConfirm(data: {name: string, description: string}){
+    this.setTableRowStore.updateSet(data)
+  }
+
+  onEditCancel(){
+    this.setTableStore.setInitialView()
+  }
 }
