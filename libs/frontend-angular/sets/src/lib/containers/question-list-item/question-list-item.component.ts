@@ -1,3 +1,4 @@
+import { QuestionsDataStore } from './../../data-access/questions-data.store';
 import { hideListItem, showListItem } from '@qisapp/shared';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, InjectionToken, Input, OnInit } from '@angular/core';
@@ -36,13 +37,14 @@ export class QuestionListItemComponent {
   }
 
   vm$ = this.selfStore.vm$;
+  isDeleteLoading$ = this.questionsDataStore.isDeleteLoading$
 
-  constructor(private selfStore: QuestionListItemStore) { }
+  constructor(private selfStore: QuestionListItemStore, private questionsDataStore: QuestionsDataStore) { }
 
 
 
   removeQuestion(){
-    this.selfStore.deleteQuestion(this.question.id || 0)
+    this.questionsDataStore.deleteQuestion({questionId: this.question.id, setId: this.question.setId})
   }
 
 

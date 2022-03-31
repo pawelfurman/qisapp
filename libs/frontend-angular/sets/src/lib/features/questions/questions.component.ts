@@ -1,3 +1,4 @@
+import { QuestionsDataStore } from './../../data-access/questions-data.store';
 import { transition, trigger, useAnimation } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
@@ -19,10 +20,10 @@ import { QuestionsStore } from '../../store/questions.store';
 })
 export class QuestionsComponent implements OnInit {
 
-  questions$ = this.questionStore.entities$
+  questions$ = this.questionsDataStore.entities$
   setId$ = this.questionStore.setId$
 
-  constructor(public config: DynamicDialogConfig, private questionStore: QuestionsStore) { }
+  constructor(public config: DynamicDialogConfig, private questionStore: QuestionsStore, private questionsDataStore: QuestionsDataStore) { }
 
   ngOnInit(): void {
     this.questionStore.setSetId(this.config.data.setId)

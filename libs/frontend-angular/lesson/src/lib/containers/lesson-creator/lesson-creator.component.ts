@@ -1,7 +1,7 @@
 import { FormBuilder, Validators } from '@angular/forms';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LessonStore } from '../../store/lesson.store';
+import { LessonStore } from '../../feature/shell/lesson.store';
 
 @Component({
   selector: 'fa-lesson-creator',

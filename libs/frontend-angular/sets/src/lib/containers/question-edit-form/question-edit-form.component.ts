@@ -1,20 +1,24 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Question } from '../../features/questions/questions.types';
-import { QuestionListItemStore } from '../question-list-item/question-list-item.store';
-import { QuestionEditFormStore } from './question-edit-form.store';
+import { QuestionsDataStore } from './../../data-access/questions-data.store';
 
 @Component({
   selector: 'fa-question-edit-form',
   templateUrl: './question-edit-form.component.html',
   styleUrls: ['./question-edit-form.component.scss'],
-  providers: [QuestionEditFormStore]
+  providers: []
 })
-export class QuestionEditFormComponent implements OnInit {
+export class QuestionEditFormComponent {
 
+  private _question!: Question
   @Input() id!: number
   @Input() set question(value:Question){
+    this._question = value
     this.form.patchValue(value)
+  }
+  get question() {
+    return this._question
   }
 
   form: FormGroup = this.fb.group({
@@ -24,25 +28,17 @@ export class QuestionEditFormComponent implements OnInit {
     secondValueCollocation: [],
     firstValueUsage: [],
     secondValueUsage: [],
-  }) 
+  })
 
-  vm$ = this.selfStore.vm$
+  isUpdateLoading$ = this.questionsDataStore.isUpdateLoading$;
 
-  constructor(private fb: FormBuilder,  private selfStore: QuestionEditFormStore) { }
 
-  ngOnInit(): void {
-
-  }
+  constructor(private fb: FormBuilder, private questionsDataStore: QuestionsDataStore) { }
 
   updateQuestion(){
     if(this.form.valid){
-      this.selfStore.updateQuestion(this.form.value)
+      this.questionsDataStore.updateQuestion({...this.form.value, id: this.question.id, setId: this.question.setId})
     }
-
-  }
-
-  reset(){
-
   }
 
 }

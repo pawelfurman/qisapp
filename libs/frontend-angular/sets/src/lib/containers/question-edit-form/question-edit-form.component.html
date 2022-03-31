@@ -1,4 +1,4 @@
-<ng-container *ngIf="vm$ | async as vm">
+
     <form action="" [formGroup]="form" (submit)="updateQuestion()">
         <div class="grid">
             <div class="col-6">
@@ -21,8 +21,7 @@
             </div>
             <div class="col-6"></div>
             <div class="col-6 form-buttons flex justify-content-end">
-                <button pButton type="submit" class="p-button-sm" label="Save" [loading]="vm.processing"></button>
+                <button pButton type="submit" class="p-button-sm" label="Save" [loading]="(isUpdateLoading$ | async)!"></button>
             </div>
         </div>
     </form>
-</ng-container>

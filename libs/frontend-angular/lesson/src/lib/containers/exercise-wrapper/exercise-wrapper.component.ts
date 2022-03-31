@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ExerciseStore } from '../../store/exercise.store';
-
-import { ExerciseSelectors } from '../../store/exercise.selectors';
+import { ExerciseSelectors } from '../../feature/exercise/exercise.selectors';
+import { ExerciseStore } from '../../feature/exercise/exercise.store';
 import { ExerciseEngineService } from '../../utils/exercise-engine.service';
 
 @Component({

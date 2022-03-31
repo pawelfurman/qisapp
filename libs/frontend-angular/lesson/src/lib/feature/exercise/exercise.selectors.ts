@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
 import { map, pairwise, startWith } from 'rxjs';
-import { ExerciseEngineService } from '../utils/exercise-engine.service';
+import { ExerciseEngineService } from '../../utils/exercise-engine.service';
 import { ExerciseStore } from './exercise.store';
 
 

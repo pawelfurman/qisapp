@@ -9,13 +9,11 @@ export type QuestionItemProcessingTypes = "none" | "update" | "delete"
 
 export interface QuestionListItemState {
   mode: QuestionItemMode,
-  processing: QuestionItemProcessingTypes,
   questionId: number
 };
 
 const initialState: QuestionListItemState = {
   mode: "default",
-  processing: "none",
   questionId: 0
 };
 
@@ -29,14 +27,12 @@ export class QuestionListItemStore extends ComponentStore<QuestionListItemState>
   /** Selectors */
   readonly questionId$ = this.select(state => state.questionId)
   readonly mode$ = this.select((state) => state.mode)
-  readonly processingDelete$ = this.select((state) => state.processing === "delete")
 
 
   readonly vm$ = this.select(
     this.mode$,
-    this.processingDelete$,
-    (mode, processingDelete) => {
-      return {mode, processingDelete}
+    (mode) => {
+      return {mode}
     }
   )
 

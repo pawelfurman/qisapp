@@ -10,6 +10,7 @@ import { QuestionListItemComponent } from '../../containers/question-list-item/q
 import { QuestionsStore } from '../../store/questions.store';
 import { QuestionsComponent } from './questions.component';
 import { QuestionsRoutingModule } from './questions-routing.module';
+import { QuestionsDataStore } from '../../data-access/questions-data.store';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { QuestionsRoutingModule } from './questions-routing.module';
     InputTextModule,
     ChipsModule
   ],
-  providers: [QuestionsStore]
+  providers: [QuestionsStore, QuestionsDataStore]
 })
 export class QuestionsModule { 
 

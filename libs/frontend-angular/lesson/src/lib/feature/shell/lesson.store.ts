@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore, tapResponse } from '@ngrx/component-store';
 import { delay, from, map, mergeMap, Observable, switchMap, tap, toArray } from 'rxjs';
-import { LessonService } from '../data-access/lesson.service';
-import { Question, Set } from '../frontend-angular-lesson.types';
+import { LessonService } from '../../data-access/lesson.service';
+import { Question, Set } from '../../frontend-angular-lesson.types';
 
 export interface LessonState {
   sets: Set[]

@@ -3,18 +3,20 @@ import {
   ActivatedRouteSnapshot, Resolve
 } from '@angular/router';
 import { filter, Observable, take, tap } from 'rxjs';
-import { QuestionsStore } from '../../store/questions.store';
+import { QuestionsDataStore } from '../../data-access/questions-data.store';
 
 @Injectable()
 export class QuestionsResolver implements Resolve<boolean> {
 
-  constructor(private questionsStore: QuestionsStore){}
+  constructor(private questionsDataStore: QuestionsDataStore){}
 
   resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
-    return this.questionsStore.loaded$.pipe(
+    return this.questionsDataStore.loaded$.pipe(
       tap((loaded) => {
+
+        console.log('loadide', loaded);
         if(!loaded){
-          this.questionsStore.fetchQuestions({setId: Number(route.params['setId']) })
+          this.questionsDataStore.fetchQuestions({setId: Number(route.params['setId']) })
         }
       }),
       filter(loaded => loaded),

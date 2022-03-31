@@ -17,7 +17,7 @@
         <div class="col-2 flex justify-content-end">
             <button type="button" (click)="toggleUpdate(vm.mode)" pButton 
                 [icon]="vm.mode === 'update' ? 'pi pi-angle-up' : 'pi pi-angle-down'" class="ml-1"></button>
-            <button [loading]="vm.processingDelete" type="button" (click)="removeQuestion()" pButton class="p-button-danger ml-1" icon="pi pi-trash"></button>
+            <button [loading]="(isDeleteLoading$ | async)!" type="button" (click)="removeQuestion()" pButton class="p-button-danger ml-1" icon="pi pi-trash"></button>
         </div>
 
         <fa-question-edit-form  *ngIf="vm.mode === 'update'" [question]="question" @enterLeaveAnimation></fa-question-edit-form>

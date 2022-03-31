@@ -1,17 +1,17 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { distinctUntilChanged, filter, skip, tap } from 'rxjs';
-import { QuestionAddFormStore } from './question-add-form.store';
+import { QuestionsDataStore } from '../../data-access/questions-data.store';
 
 @Component({
   selector: 'fa-question-add-form',
   templateUrl: './question-add-form.component.html',
   styleUrls: ['./question-add-form.component.scss'],
-  providers: [QuestionAddFormStore]
 })
 export class QuestionAddFormComponent {
 
   @ViewChild('firstField') firstField!: ElementRef<HTMLInputElement>
+  @Input() setId!: number
 
   form: FormGroup = this.fb.group({
     firstValue: [],
@@ -22,11 +22,11 @@ export class QuestionAddFormComponent {
     secondValueUsage: [],
   }) 
 
-  vm$ = this.questionAddFormStore.vm$
+  isCreateLoading$ = this.questionDataStore.isCreateLoading$
   
 
-  constructor( private fb: FormBuilder, private questionAddFormStore: QuestionAddFormStore) {
-    this.questionAddFormStore.processing$.pipe(
+  constructor( private fb: FormBuilder, private questionDataStore: QuestionsDataStore) {
+    this.questionDataStore.isCreateLoading$.pipe(
       skip(1),
       distinctUntilChanged(),
       filter(item => item === false),
@@ -41,7 +41,7 @@ export class QuestionAddFormComponent {
   addQuestion(){
     if(this.form.valid){
       this.form.disable()
-      this.questionAddFormStore.createQuestion(this.form.value)
+      this.questionDataStore.createQuestion({...this.form.value, setId: this.setId})
     }
   }
   

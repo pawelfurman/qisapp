@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, OnDestroy } from '@angular/core';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { ExerciseStore } from '../../store/exercise.store';
+import { ExerciseStore } from './exercise.store';
 
 export type ExerciseQueryParams = {
   setIds: string,

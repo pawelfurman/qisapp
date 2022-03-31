@@ -21,8 +21,8 @@ export class PopupHostComponent implements OnDestroy {
  
 
         const ref = this.dialogService.open(PageExerciseComponent, {
-          width: '80vw',
-          height: '80vh',
+          width: '100vw',
+          height: '100vh',
           data: {...params},
           header: `Exercise`
         })
