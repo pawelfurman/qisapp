@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subject, takeUntil } from 'rxjs';
-import { QuestionsDataStore } from '../../../data-access/questions-data.store';
+import { QuestionsEntitiesStore } from '../../../data-access/questions/questions-entities.store';
 import { QuestionsComponent } from '../questions.component';
 
 @Component({
@@ -14,7 +14,7 @@ export class PopupHostComponent implements OnDestroy {
 
   private destroy$ = new Subject<void>()
 
-  constructor(private questionsDataStore: QuestionsDataStore, private dialogService: DialogService, public ref: DynamicDialogRef, private router: Router, private route: ActivatedRoute) {
+  constructor(private questionsEntitiesStore: QuestionsEntitiesStore, private dialogService: DialogService, public ref: DynamicDialogRef, private router: Router, private route: ActivatedRoute) {
     this.route.params.pipe(
       takeUntil(this.destroy$)
     ).subscribe(
@@ -29,7 +29,7 @@ export class PopupHostComponent implements OnDestroy {
     
         ref.onClose.subscribe((_) => {
           this.router.navigateByUrl('/sets')
-          this.questionsDataStore.setInitialState()
+          this.questionsEntitiesStore.setInitialState()
 
         })
       }

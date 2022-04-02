@@ -25,7 +25,7 @@
                 formControlName="secondValueUsage" pInputText>
         </div>
         <div class="col-12 form-buttons">
-            <button [loading]="(isCreateLoading$ | async)!" pButton type="submit" class="p-button-sm"
+            <button [loading]="isLoading" pButton type="submit" class="p-button-sm"
                 label="Save"></button>
             <button pButton type="button" class="p-button-danger p-button-sm" (click)="reset()">Reset</button>
         </div>

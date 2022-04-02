@@ -1,9 +1,11 @@
-import { QuestionsDataStore } from './../../data-access/questions-data.store';
+import { QuestionsUpdateStore } from './../../data-access/questions/questions-update.store';
+import { QuestionDeleteState, QuestionsDeleteStore } from './../../data-access/questions/questions-delete.store';
+import { transition, trigger, useAnimation } from '@angular/animations';
+import { ChangeDetectionStrategy, Component, InjectionToken, Input } from '@angular/core';
 import { hideListItem, showListItem } from '@qisapp/shared';
-import { trigger, transition, useAnimation } from '@angular/animations';
-import { ChangeDetectionStrategy, Component, InjectionToken, Input, OnInit } from '@angular/core';
+import { combineLatestWith, map, of } from 'rxjs';
 import { Question } from '../../features/questions/questions.types';
-import { QuestionItemMode, QuestionListItemStore } from './question-list-item.store';
+import { QuestionListItemStore } from './question-list-item.store';
 
 export const CONTEXT_TOKEN = new InjectionToken('edit-context-data')
 
@@ -12,7 +14,7 @@ export const CONTEXT_TOKEN = new InjectionToken('edit-context-data')
   templateUrl: './question-list-item.component.html',
   styleUrls: ['./question-list-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [QuestionListItemStore],
+  providers: [QuestionListItemStore, QuestionsDeleteStore, QuestionsUpdateStore],
   animations: [
     trigger('enterLeaveAnimation', [
       transition(':enter',[
@@ -29,22 +31,32 @@ export class QuestionListItemComponent {
   private _question!: Question;
   @Input()
   set question(value: Question){
-    this.selfStore.setQuestionId(value.id || 0)
     this._question = value
   }
   get question(){
     return this._question
   }
 
-  vm$ = this.selfStore.vm$;
-  isDeleteLoading$ = this.questionsDataStore.isDeleteLoading$
+  vm$ = this.selfStore.vm$.pipe(
+    combineLatestWith(
+      this.questionsUpdateStore.loading$,
+      this.questionsDeleteStore.loading$
+    ),
+    map( ([vm, isUpdateLoading, isDeleteLoading]) => ({
+      ...vm,
+      isUpdateLoading,
+      isDeleteLoading
+    }))
+  );
 
-  constructor(private selfStore: QuestionListItemStore, private questionsDataStore: QuestionsDataStore) { }
-
-
+  constructor(private selfStore: QuestionListItemStore, private questionsDeleteStore: QuestionsDeleteStore, private questionsUpdateStore: QuestionsUpdateStore) { }
 
   removeQuestion(){
-    this.questionsDataStore.deleteQuestion({questionId: this.question.id, setId: this.question.setId})
+    this.questionsDeleteStore.deleteQuestion({questionId: this.question.id, setId: this.question.setId})
+  }
+
+  onUpdateQuestion(data: Partial<Question>){
+    this.questionsUpdateStore.updateQuestion(data as Question);
   }
 
 
@@ -52,9 +64,8 @@ export class QuestionListItemComponent {
     this.selfStore.setMode("update")
   }
 
-  toggleUpdate(mode: QuestionItemMode){
-
-    this.selfStore.setMode(mode === "default" ? "update":  "default")
+  toggleUpdate(isUpdateMode: boolean){
+    this.selfStore.setMode(isUpdateMode ? "default":  "update")
   }
 
 }

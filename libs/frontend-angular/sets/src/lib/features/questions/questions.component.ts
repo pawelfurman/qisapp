@@ -1,9 +1,11 @@
-import { QuestionsDataStore } from './../../data-access/questions-data.store';
 import { transition, trigger, useAnimation } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { Component } from '@angular/core';
 import { hideListItem, showListItem } from '@qisapp/shared';
-import { QuestionsStore } from '../../store/questions.store';
+import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { combineLatest, map } from 'rxjs';
+import { QuestionsCreateStore } from '../../data-access/questions/questions-create.store';
+import { QuestionsEntitiesStore } from './../../data-access/questions/questions-entities.store';
+import { Question } from './questions.types';
 @Component({
   templateUrl: './questions.component.html',
   styleUrls: ['./questions.component.scss'],
@@ -16,16 +18,30 @@ import { QuestionsStore } from '../../store/questions.store';
         useAnimation(hideListItem, {params: {time: '150ms'}})
       ])
     ])
-  ]
+  ],
+  providers: [QuestionsCreateStore]
 })
-export class QuestionsComponent implements OnInit {
+export class QuestionsComponent {
 
-  questions$ = this.questionsDataStore.entities$
-  setId$ = this.questionStore.setId$
+  vm$ = combineLatest([
+    this.questionsEntitiesStore.entities$,
+    this.questionsCreateStore.loading$
+  ]).pipe(
+    map(([entities, isCreateLoading]) => {
+      return {
+        entities, isCreateLoading
+      }
+    })
+  )
+  
+  constructor(
+    public config: DynamicDialogConfig,
+    private questionsEntitiesStore: QuestionsEntitiesStore,
+    private questionsCreateStore: QuestionsCreateStore
+  ) { }
 
-  constructor(public config: DynamicDialogConfig, private questionStore: QuestionsStore, private questionsDataStore: QuestionsDataStore) { }
 
-  ngOnInit(): void {
-    this.questionStore.setSetId(this.config.data.setId)
+  onQuestionCreate(data: Partial<Question>){
+    this.questionsCreateStore.createQuestion({setId: this.config.data.setId, ...data} as Question)
   }
 }

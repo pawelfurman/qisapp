@@ -2,23 +2,20 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
-import { ChipsModule } from 'primeng/chips';
 import { InputTextModule } from 'primeng/inputtext';
-import { QuestionAddFormComponent } from '../../containers/question-add-form/question-add-form.component';
-import { QuestionEditFormComponent } from '../../containers/question-edit-form/question-edit-form.component';
 import { QuestionListItemComponent } from '../../containers/question-list-item/question-list-item.component';
-import { QuestionsStore } from '../../store/questions.store';
-import { QuestionsComponent } from './questions.component';
+import { QuestionsEntitiesStore } from '../../data-access/questions/questions-entities.store';
+import { QuestionsFetchStore } from '../../data-access/questions/questions-fetch.store';
+import { QuestionAddFormModule } from '../../ui/question-add-form/question-add-form.module';
+import { QuestionModuleFormModule } from '../../ui/question-edit-form/question-module-form.module';
 import { QuestionsRoutingModule } from './questions-routing.module';
-import { QuestionsDataStore } from '../../data-access/questions-data.store';
+import { QuestionsComponent } from './questions.component';
 
 
 @NgModule({
   declarations: [
     QuestionsComponent,
-    QuestionAddFormComponent,
-    QuestionListItemComponent,
-    QuestionEditFormComponent
+    QuestionListItemComponent
   ],
   imports: [
     CommonModule,
@@ -26,9 +23,10 @@ import { QuestionsDataStore } from '../../data-access/questions-data.store';
     ButtonModule,
     ReactiveFormsModule,
     InputTextModule,
-    ChipsModule
+    QuestionAddFormModule,
+    QuestionModuleFormModule
   ],
-  providers: [QuestionsStore, QuestionsDataStore]
+  providers: [QuestionsFetchStore, QuestionsEntitiesStore]
 })
 export class QuestionsModule { 
 

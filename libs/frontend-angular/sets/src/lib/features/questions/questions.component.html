@@ -1,5 +1,9 @@
-<fa-question-add-form [setId]="(setId$ | async)!"></fa-question-add-form>
-<section class="question-list">
 
-    <fa-question-list-item *ngFor="let q of questions$ | async" [question]="q"  @enterLeaveAnimation></fa-question-list-item>
-</section>
+
+<ng-container *ngIf="(vm$ | async) as vm">
+    <fa-question-add-form [isLoading]="vm.isCreateLoading" (create)="onQuestionCreate($event)"></fa-question-add-form>
+    <section class="question-list">
+        <fa-question-list-item *ngFor="let entity of vm.entities" [question]="entity"  @enterLeaveAnimation></fa-question-list-item>
+    </section>
+
+</ng-container>

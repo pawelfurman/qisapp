@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { of } from 'rxjs';
 import { Question } from '../../features/questions/questions.types';
-import { QuestionsDataStore } from './../../data-access/questions-data.store';
 
 @Component({
   selector: 'fa-question-edit-form',
@@ -20,6 +20,9 @@ export class QuestionEditFormComponent {
   get question() {
     return this._question
   }
+  @Input() isLoading!: boolean
+
+  @Output() update: EventEmitter<Partial<Question>> = new EventEmitter()
 
   form: FormGroup = this.fb.group({
     firstValue: [],
@@ -30,14 +33,11 @@ export class QuestionEditFormComponent {
     secondValueUsage: [],
   })
 
-  isUpdateLoading$ = this.questionsDataStore.isUpdateLoading$;
-
-
-  constructor(private fb: FormBuilder, private questionsDataStore: QuestionsDataStore) { }
+  constructor(private fb: FormBuilder) { }
 
   updateQuestion(){
     if(this.form.valid){
-      this.questionsDataStore.updateQuestion({...this.form.value, id: this.question.id, setId: this.question.setId})
+      this.update.emit({...this.form.value, id: this.question.id, setId: this.question.setId})
     }
   }
 
