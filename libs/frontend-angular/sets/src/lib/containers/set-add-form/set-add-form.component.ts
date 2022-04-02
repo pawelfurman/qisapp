@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SetsCreateStore } from '../../data-access/sets/sets-create.store';
 import { Set } from '../../features/sets/sets.types';
 import { SetsStore } from '../../store/sets.store';
 import { SetAddFormStore } from './set-add-form.store';
@@ -9,7 +10,7 @@ import { SetAddFormStore } from './set-add-form.store';
   templateUrl: './set-add-form.component.html',
   styleUrls: ['./set-add-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [SetAddFormStore]
+  providers: [SetAddFormStore, SetsCreateStore]
 })
 export class SetAddFormComponent {
 
@@ -27,13 +28,13 @@ export class SetAddFormComponent {
   vm$ = this.setAddFormStore.vm$;
 
 
-  constructor(private fb: FormBuilder, private setAddFormStore: SetAddFormStore) { }
+  constructor(private fb: FormBuilder, private setAddFormStore: SetAddFormStore, private setsCreateStore: SetsCreateStore) { }
 
 
   createSet(){
     const value: Partial<Set> = this.createForm.value;
     if(this.createForm.valid){
-      this.setAddFormStore.createSet(value)
+      this.setsCreateStore.createSet(value)
     }
   }
 

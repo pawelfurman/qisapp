@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { SetsStore } from '../../store/sets.store';
+import { Observable, of } from 'rxjs';
+import { SetsEntitiesStore } from '../../data-access/sets/sets-entities.store';
 import { Set } from './sets.types';
 
 @Component({
@@ -9,9 +9,8 @@ import { Set } from './sets.types';
 })
 export class SetsComponent {
 
-  sets$: Observable<Set[] | undefined> = this.setsStore.sets$;
-  setsLoading$: Observable<boolean> = this.setsStore.loading$;
+  sets$: Observable<Set[] | undefined> = this.setsEntitiesStore.entities$;
 
-  constructor(private setsStore: SetsStore) { }
+  constructor(private setsEntitiesStore: SetsEntitiesStore) { }
 
 }

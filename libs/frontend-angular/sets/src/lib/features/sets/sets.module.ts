@@ -16,6 +16,8 @@ import { SetTableRowComponent } from '../../containers/set-table-row/set-table-r
 import { SetTableComponent } from '../../containers/set-table/set-table.component';
 import { SetsStore } from '../../store/sets.store';
 import { SetRowDeletionInabilityComponent } from '../../ui/set-row-deletion-inability/set-row-deletion-inability.component';
+import { SetsEntitiesStore } from '../../data-access/sets/sets-entities.store';
+import { SetsFetchStore } from '../../data-access/sets/sets-fetch.store';
 
 
 @NgModule({
@@ -41,7 +43,7 @@ import { SetRowDeletionInabilityComponent } from '../../ui/set-row-deletion-inab
     ReactiveFormsModule,
     DynamicDialogModule
   ],
-  providers: [SetsStore],
+  providers: [SetsStore, SetsEntitiesStore, SetsFetchStore],
 })
 export class SetsModule {
  }
