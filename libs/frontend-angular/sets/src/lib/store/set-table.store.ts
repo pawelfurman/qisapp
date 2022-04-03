@@ -20,6 +20,7 @@ const initialState: SetTableState = {
 export class SetTableStore extends ComponentStore<SetTableState> {
   constructor(private service:SetsService, private setStore: SetsStore) {
     super(initialState);
+    console.log('reinigt')
   }
 
   readonly selectedSetId$ = this.select((state) => state.selectedSetId)

@@ -1,39 +1,23 @@
-
-
-
-<ng-container [ngTemplateOutlet]="outlet" [ngTemplateOutletContext]="{vm: vm$ | async}"></ng-container>
-
-
-<ng-template #outlet let-vm="vm">
-    <ng-container *ngIf="vm.mode === 'default'" [ngTemplateOutlet]="default" [ngTemplateOutletContext]="{vm}"></ng-container>
-    <ng-container *ngIf="vm.mode === 'create'" [ngTemplateOutlet]="create" [ngTemplateOutletContext]="{vm}"></ng-container>
-</ng-template>
-
-
-<ng-template #create let-processingCreate="vm.processingCreate">
-    <form action="" [formGroup]="createForm" (submit)="createSet()" #form class="pt-2 pb-2">
-        <div class="grid align-items-center mt-0">
-            <div class="col-1">
-            </div>
-            <div class="col-3">
-                <input placeholder="name" pInputText type="text" formControlName="name">
-            </div>
-            <div class="col-6">
-                <input placeholder="description" pInputText type="text" formControlName="description">
-            </div>
-            <div class="col-2 flex justify-content-end">
-                <button  pButton icon="pi pi-save" class="p-button-success" [loading]="processingCreate"></button>
-                <button type="button" (click)="cancel()" pButton class="p-button-danger ml-1" icon="pi pi-times"></button>
-            </div>
+<form action="" [formGroup]="createForm" (submit)="createSet()" class="pt-2 pb-2" *ngIf="layout === 'create'">
+    <div class="grid align-items-center mt-0">
+        <div class="col-1">
         </div>
-    </form>
-</ng-template>
-
-<ng-template #default>
-    <div class="grid pt-2 pb-2 mt-0">
-        <div class="col-10"></div>
+        <div class="col-3">
+            <input placeholder="name" pInputText type="text" formControlName="name" #formNameField>
+        </div>
+        <div class="col-6">
+            <input placeholder="description" pInputText type="text" formControlName="description">
+        </div>
         <div class="col-2 flex justify-content-end">
-            <button type="button" pButton icon="pi pi-plus" (click)="openCreateForm()"></button>
+            <button pButton icon="pi pi-save" class="p-button-success" [loading]="loading"></button>
+            <button type="button" (click)="cancel()" pButton class="p-button-danger ml-1" icon="pi pi-times"></button>
         </div>
     </div>
-</ng-template>
+</form>
+
+<div class="grid pt-2 pb-2 mt-0" *ngIf="layout === 'default'">
+    <div class="col-10"></div>
+    <div class="col-2 flex justify-content-end">
+        <button type="button" pButton icon="pi pi-plus" (click)="open()"></button>
+    </div>
+</div>

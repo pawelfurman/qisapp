@@ -1,9 +1,9 @@
 <router-outlet></router-outlet>
 
 
-<p-card header="Sets">
-    <fa-set-add-form></fa-set-add-form>
+<p-card header="Sets" *ngIf="vm$ | async as vm">
+    <fa-set-add-form [loading]="vm.isCreateLoading" [layout]="vm.layout" (create)="onSetCreate($event)" (toggle)="onToggleCreateForm($event)"></fa-set-add-form>
     <ng-container *ngIf="sets$ | async as sets">
-        <fa-set-table [sets]="sets"></fa-set-table>
+        <fa-set-table [sets]="vm.entities"></fa-set-table>
     </ng-container>
 </p-card>

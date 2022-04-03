@@ -26,7 +26,7 @@ export class SetRowDefaultComponent {
   @Output() openQuestions: EventEmitter<number> = new EventEmitter()
   
   editSet(){
-    this.edit.emit([this.id, "edition"])
+    this.edit.emit()
   }
 
   checkDeleteSet(){

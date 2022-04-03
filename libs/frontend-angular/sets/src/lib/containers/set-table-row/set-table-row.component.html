@@ -1,27 +1,27 @@
 <ng-container *ngIf="vm$ | async as vm">
 
 
-    <ng-container [ngSwitch]="vm.template">
+    <ng-container [ngSwitch]="vm.layout">
         <ng-container *ngSwitchCase="'default'" [ngTemplateOutlet]="default"></ng-container>
-        <ng-container *ngSwitchCase="'edition'" [ngTemplateOutlet]="edition"></ng-container>
-        <ng-container *ngSwitchCase="'deletion'" [ngTemplateOutlet]="deletion"></ng-container>
-        <ng-container *ngSwitchCase="'deletion-inability'" [ngTemplateOutlet]="deletionInability"></ng-container>
+        <ng-container *ngSwitchCase="'update'" [ngTemplateOutlet]="edition"></ng-container>
+        <ng-container *ngSwitchCase="'delete'" [ngTemplateOutlet]="deletion"></ng-container>
+        <ng-container *ngSwitchCase="'delete-check'" [ngTemplateOutlet]="deletionInability"></ng-container>
     </ng-container>
 
     <ng-template #default>
         <fa-set-row-default [id]="vm.setId" [name]="set.name" [description]="set.description"
-            [isProcessing]="vm.processingDeleteCheck" (checkDelete)="onDeleteCheck($event)" (edit)="onEdit($event)"
+            [isProcessing]="false" (checkDelete)="onDeleteCheck($event)" (edit)="onEdit()"
             (openQuestions)="onOpenQuestions($event)"></fa-set-row-default>
     </ng-template>
 
 
     <ng-template #edition>
         <fa-set-row-edition [id]="vm.setId" [name]="set.name" [description]="set.description"
-            [isProcessing]="vm.processingUpdate" (confirm)="onEditConfirm($event)" (cancel)="onEditCancel()"></fa-set-row-edition>
+            [isProcessing]="vm.isUpdateLoading" (confirm)="onEditConfirm($event)" (cancel)="onEditCancel()"></fa-set-row-edition>
     </ng-template>
 
     <ng-template #deletion>
-        <fa-set-row-deletion [id]="vm.setId" [isProcessing]="vm.processingDelete" (confirm)="onDeleteConfirm($event)"
+        <fa-set-row-deletion [id]="vm.setId" [isProcessing]="vm.isDeleteLoading" (confirm)="onDeleteConfirm($event)"
             (cancel)="onDeleteCancel()"></fa-set-row-deletion>
     </ng-template>
 

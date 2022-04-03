@@ -1,20 +1,16 @@
 import { Injectable } from '@angular/core';
-import { ComponentStore, tapResponse } from '@ngrx/component-store';
-import { Observable, tap, delay, switchMap } from 'rxjs';
+import { ComponentStore } from '@ngrx/component-store';
 import { SetsService } from '../../data-access/sets.service';
-import {Set} from '../../features/sets/sets.types' 
 import { SetsStore } from '../../store/sets.store';
 
-export type ComponentMode = "default" | "create"
+export type SetsAddFormLayout = "default" | "create"
 
 export type SetAddFormState = {
-  mode: ComponentMode
-  processingCreate: boolean
+  layout: SetsAddFormLayout
 };
 
 const initialState: SetAddFormState = {
-  mode: 'default',
-  processingCreate: false
+  layout: 'default'
 };
 
 @Injectable()
@@ -25,40 +21,17 @@ export class SetAddFormStore extends ComponentStore<SetAddFormState> {
 
   /** Selectors */
 
-  readonly mode$ = this.select(state => state.mode)
-  readonly processingCreate$ = this.select(state => state.processingCreate)
+  readonly layout$ = this.select(state => state.layout)
 
-  readonly vm$ = this.select(this.mode$, this.processingCreate$, (mode, processingCreate ) => ({
-    mode,
-    processingCreate
+  readonly vm$ = this.select(this.layout$, (layout ) => ({
+    layout
   }))
 
 
   /** Updaters */
 
-  readonly setMode = this.updater((state, mode: ComponentMode) => ({
+  readonly setLayout = this.updater((state, layout: SetsAddFormLayout) => ({
     ...state,
-    mode
+    layout
   }))
-
-
-  /** Effects */
-
-  readonly createSet = this.effect((data$: Observable<Partial<Set>>) => {
-    return data$.pipe(
-      tap(_ => this.patchState({processingCreate: true})),
-      delay(500),
-      switchMap((data) => this.service.createSet(data).pipe(
-        tapResponse(
-          (data: Set) => {
-            this.patchState({processingCreate: false, mode: "default"})
-            this.setsStore.addOneSet(data)
-          },
-          () => {
-            this.patchState({processingCreate: false, mode: "default"})
-          }
-        )
-      ))
-    )
-  })
 }

@@ -1,3 +1,5 @@
+import { combineLatest, map, combineLatestWith } from 'rxjs';
+import { SetsDeleteStore } from './../../data-access/sets/sets-delete.store';
 
 
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
@@ -5,17 +7,17 @@ import { Set } from '../../features/sets/sets.types';
 import { SetMode, SetTableStore } from '../../store/set-table.store';
 import { SetTableRowStore } from '../../store/set-table-row.store';
 import { Router } from '@angular/router';
+import { SetsUpdateStore } from '../../data-access/sets/sets-update.store';
 
 @Component({
   selector: 'fa-set-table-row',
   templateUrl: './set-table-row.component.html',
   styleUrls: ['./set-table-row.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [SetTableRowStore]
+  providers: [SetTableRowStore, SetsDeleteStore, SetsUpdateStore]
 
 })
 export class SetTableRowComponent {
-  vm$ = this.setTableRowStore.vm$
 
   private _set!: Set
   @Input() set set(value: Set) {
@@ -26,15 +28,39 @@ export class SetTableRowComponent {
     return this._set
   }
 
-  constructor(private setTableStore: SetTableStore, private setTableRowStore: SetTableRowStore, private router: Router) { }
+  vm$ = this.setTableRowStore.vm$.pipe(
+    combineLatestWith(
+      this.setsDeleteStore.loading$,
+      this.setsUpdateStore.loading$
+    ),
+    map(([vm, isDeleteLoading, isUpdateLoading]) => {
+      return {
+        ...vm,
+        isDeleteLoading,
+        isUpdateLoading
+      }
+    })
+  )
 
-  onEdit(data: [number, SetMode]){
 
-    this.setTableStore.setSetView([...data])
+  constructor(
+    private setTableStore: SetTableStore,
+    private setTableRowStore: SetTableRowStore,
+    private router: Router,
+    private setsDeleteStore: SetsDeleteStore,
+    private setsUpdateStore: SetsUpdateStore
+  ) { 
+
+   
+  }
+
+  onEdit(){
+
+    this.setTableRowStore.setLayout("update")
   }
 
   onDeleteCheck(id: number){
-    this.setTableRowStore.enterToDeleteView(id)
+    this.setTableRowStore.checkDelete(id)
   }
 
   onOpenQuestions(id: number){
@@ -42,22 +68,22 @@ export class SetTableRowComponent {
   }
 
   onDeleteConfirm(id: number){
-    this.setTableRowStore.deleteSet(id)
+    this.setsDeleteStore.deleteSet(id)
   }
 
   onDeleteCancel(){
-    this.setTableStore.setInitialView()
+    this.setTableRowStore.setLayout("default")
   }
 
   onDeleteMessageConfirm(){
-    this.setTableStore.setInitialView()
+    this.setTableRowStore.setLayout("default")
   }
 
   onEditConfirm(data: {name: string, description: string}){
-    this.setTableRowStore.updateSet(data)
+    this.setsUpdateStore.updateSet({...data, id: this.set.id} as Set)
   }
 
   onEditCancel(){
-    this.setTableStore.setInitialView()
+    this.setTableRowStore.setLayout("default")
   }
 }

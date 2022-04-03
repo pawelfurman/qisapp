@@ -1,32 +1,22 @@
-import { SetsStore } from './sets.store';
 import { Injectable } from '@angular/core';
-import { ComponentStore, tapResponse } from '@ngrx/component-store';
-import { delay, map, mapTo, Observable, of, switchMap, tap, withLatestFrom } from 'rxjs';
-import { SetTableStore } from './set-table.store';
+import { ComponentStore } from '@ngrx/component-store';
+import { delay, map, Observable, switchMap, tap } from 'rxjs';
 import { SetsService } from '../data-access/sets.service';
+import { SetTableStore } from './set-table.store';
+import { SetsStore } from './sets.store';
 
-type UpdateData = {
-  name: string,
-  description: string
-}
 
-export type HttpProcessingMode = "none" | "update" | "delete" | "delete-check"
+type SetsItemLayout = "default" | "update" | "delete" | "delete-check"
 
 
 export interface SetTableRowState {
   setId: number,
-  processingUpdate: boolean,
-  processingDelete: boolean,
-  processingDeleteCheck: boolean
-  processing: HttpProcessingMode
+  layout: SetsItemLayout
 };
 
 const initialState: SetTableRowState = {
   setId: 0,
-  processingUpdate: false,
-  processingDelete: false,
-  processingDeleteCheck: false,
-  processing: "none"
+  layout: "default"
 };
 
 @Injectable()
@@ -39,37 +29,18 @@ export class SetTableRowStore extends ComponentStore<SetTableRowState> {
   /** Selectors */
 
   readonly setId$ = this.select(state => state.setId)
-  readonly processing$ = this.select(state => state.processing)
-  readonly processingUpdate$ = this.select(this.processing$, (processing) => processing === "update")
-  readonly processingDelete$ = this.select(this.processing$, (processing) => processing === "delete")
-  readonly processingDeleteCheck$ = this.select(this.processing$, (processing) => processing === "delete-check")
-
-  readonly template$ = this.select(
-    this.setTableStore.selectedSetId$,
-    this.setTableStore.selectedSetMode$,
-    this.setId$,
-    (selectedId, mode, setId) => {
-      return selectedId === setId ? mode : 'default'
-    })
+  readonly layout$ = this.select(state => state.layout)
 
   readonly vm$ = this.select(
     this.setId$,
-    this.template$,
-    this.processingDelete$,
-    this.processingDeleteCheck$,
-    this.processingUpdate$,
+    this.layout$,
+
     (
       setId,
-      template,
-      processingDelete,
-      processingDeleteCheck,
-      processingUpdate) => {
+      layout) => {
       return {
         setId,
-        template,
-        processingDelete,
-        processingDeleteCheck,
-        processingUpdate
+        layout
       }
     })
 
@@ -80,54 +51,25 @@ export class SetTableRowStore extends ComponentStore<SetTableRowState> {
     return {...state, setId}
   })
 
+  readonly setLayout = this.updater((state, layout: SetsItemLayout) => {
+    return {...state, layout}
+  })
+
   
 
   /** Effects */
 
-  readonly updateSet = this.effect((data$: Observable<UpdateData>) => {
-    return data$.pipe(
-      tap(_ => this.patchState({processing: "update"})),
-      withLatestFrom(this.setId$),
-      switchMap(([data, setId]) => this.setService.updateSet(setId, data || {}).pipe(
-        delay(500),
-        tapResponse(
-          (_) => {
-            this.setTableStore.setInitialView()
-            this.setsStore.updateOne({id: setId, ...data})
-          },
-          () => {
-            this.setTableStore.setInitialView()
-          }
-        )
-      ))
-    )
-  })
-
-  readonly enterToDeleteView = this.effect((id$: Observable<number>) => {
+  readonly checkDelete = this.effect((id$: Observable<number>) => {
     return id$.pipe(
-      tap(_ => this.patchState({processing: "delete-check"})),
+      tap(_ => this.patchState({layout: "default"})),
       switchMap((id) => this.setService.deleteCheckSet(id).pipe(
         delay(500), 
         map(response => ({response, id}))
       )),
       tap(({response, id}) => {
-        this.patchState({processing: "none"})
-        this.setTableStore.setSetView([id, response ? "deletion" : "deletion-inability"])
+        this.patchState({layout: "default"})
+        this.patchState({layout: response ? 'delete' : 'delete-check'})
       })
     )
   })
-
-  readonly deleteSet = this.effect((id$: Observable<number>) => {
-    return id$.pipe(
-      tap(_ => this.patchState({processing: "delete"})),
-      switchMap((id) => this.setService.deleteSet(id).pipe(delay(500), mapTo(id))),
-      tap((id) => {
-        this.patchState({processing: "none"})
-        this.setsStore.deleteSet(id)
-        this.setTableStore.setInitialView()
-      })
-    )
-  })
-
-  
 }

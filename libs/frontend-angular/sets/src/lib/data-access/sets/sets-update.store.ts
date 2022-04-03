@@ -40,7 +40,7 @@ export class SetsUpdateStore extends ComponentStore<SetsUpdateState> {
           (_) => {
             this.patchState({loading: false})
             // this.setTableStore.setInitialView()
-            this.setsEntitiesStore.updateOne({ ...data, id: setId})
+            this.setsEntitiesStore.updateOne({ ...data})
           },
           () => {
             this.patchState({loading: false})

@@ -5,23 +5,15 @@ import { SetsService } from '../data-access/sets.service';
 import { Set } from './../features/sets/sets.types'
 
 
+export type SetsCreateFormLayout = "default" | "create"
 
-export type UpdateableSetData = {
-  id?: number,
-  name: string
-  description: string
-}
 
 export interface SetsState {
-  sets: Set[],
-  loading: boolean,
-  loaded: boolean
+  createFormLayout: SetsCreateFormLayout
 };
 
 const initialState: SetsState = {
-  sets: [],
-  loading: false,
-  loaded: false
+  createFormLayout: "default"
 };
 
 @Injectable()
@@ -33,52 +25,16 @@ export class SetsStore extends ComponentStore<SetsState> {
 
   /** Selectors */
 
-  readonly sets$ = this.select(state => state.sets)
-  readonly loading$ = this.select(state => state.loading)
-  readonly loaded$ = this.select(state => state.loaded)
+  createFormLayout$ = this.select((state)=>state.createFormLayout)
 
 
   /** Updaters */
 
-  readonly addOneSet = this.updater((state, set: Set) => ({
-    ...state, 
-    sets: [set, ...state.sets]
-  }))
-
-  readonly deleteSet = this.updater( (state, setId: number) => ({
-    ...state,
-    sets: state.sets.filter(s => s.id !== setId)
-  }))
-
-  readonly updateOne = this.updater((state, data: UpdateableSetData) => {
-    return {
-      ...state,
-      sets: [...state.sets.map((set) => {
-        if(set.id !== data.id){
-          return set
-        }
-        return {
-          ...set,
-          ...data
-        }
-      })]
-    }
+  setCreateFormLayout = this.updater((state, createFormLayout: SetsCreateFormLayout) => {
+    return {...state, createFormLayout}
   })
 
 
   /** Effects */
 
-  readonly fetchSets = this.effect((params$: Observable<any>) => params$.pipe(
-    switchMap( () => this.service.fetchSets()),
-    tap(() => this.patchState({loading: true})),
-    delay(300),
-    tapResponse(
-      (sets) => {
-        this.patchState({loading: false, loaded: true, sets: [...sets]})
-      },
-      () => {
-        this.patchState({loading: false})
-      }
-    )
-  )) 
 }

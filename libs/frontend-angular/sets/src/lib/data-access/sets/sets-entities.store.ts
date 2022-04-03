@@ -47,7 +47,7 @@ export class SetsEntitiesStore extends ComponentStore<SetsState> {
 
   readonly deleteSet = this.updater( (state, id: number) => ({
     ...state,
-    sets: state.entities.filter(s => s.id !== id)
+    entities: state.entities.filter(s => s.id !== id)
   }))
 
   readonly updateOne = this.updater((state, data: UpdateableSetData) => {
