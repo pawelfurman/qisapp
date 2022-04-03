@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SetRowEditionComponent } from './set-row-edition.component';
+import { SetItemDefaultComponent } from './set-item-default.component';
 
-describe('SetRowEditionComponent', () => {
-  let component: SetRowEditionComponent;
-  let fixture: ComponentFixture<SetRowEditionComponent>;
+describe('SetItemDefaultComponent', () => {
+  let component: SetItemDefaultComponent;
+  let fixture: ComponentFixture<SetItemDefaultComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SetRowEditionComponent ]
+      declarations: [ SetItemDefaultComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SetRowEditionComponent);
+    fixture = TestBed.createComponent(SetItemDefaultComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

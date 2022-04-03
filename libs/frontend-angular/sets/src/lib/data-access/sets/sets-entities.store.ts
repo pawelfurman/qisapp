@@ -64,4 +64,8 @@ export class SetsEntitiesStore extends ComponentStore<SetsState> {
       })]
     }
   })
+
+  readonly setInitialState = this.updater(() => {
+    return {...initialState}
+  })
 }

@@ -14,6 +14,8 @@ export class SetsResolver implements Resolve<boolean> {
   resolve(): Observable<boolean> {
     return this.setsEntitiesStore.loaded$.pipe(
       tap(loaded => {
+
+    console.log('resolve', loaded)
         if(!loaded){
           this.setsFetchStore.fetchSets({})
         }

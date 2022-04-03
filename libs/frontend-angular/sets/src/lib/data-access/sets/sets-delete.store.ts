@@ -36,7 +36,6 @@ export class SetsDeleteStore extends ComponentStore<SetsDeleteState> {
       switchMap((id) => this.service.deleteSet(id).pipe(delay(500), mapTo(id))),
       tap((id) => {
         this.patchState({loading: true})
-        console.log('id', id);
         this.setsEntitiesStore.deleteSet(id)
       })
     )

@@ -1,14 +1,12 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { SetTableStore } from '../../store/set-table.store';
-import { SetTableRowStore } from '../../store/set-table-row.store';
 
 @Component({
-  selector: 'fa-set-row-edition',
-  templateUrl: './set-row-edition.component.html',
-  styleUrls: ['./set-row-edition.component.scss'],
+  selector: 'fa-set-item-edition',
+  templateUrl: './set-item-edition.component.html',
+  styleUrls: ['./set-item-edition.component.scss'],
 })
-export class SetRowEditionComponent implements OnInit, OnDestroy {
+export class SetItemEditionComponent implements OnInit, OnDestroy {
 
   @Input() id!: number;
   @Input() name!: string;

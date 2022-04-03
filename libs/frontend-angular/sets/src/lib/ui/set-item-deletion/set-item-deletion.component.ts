@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'fa-set-row-deletion',
-  templateUrl: './set-row-deletion.component.html',
-  styleUrls: ['./set-row-deletion.component.scss']
+  selector: 'fa-set-item-deletion',
+  templateUrl: './set-item-deletion.component.html',
+  styleUrls: ['./set-item-deletion.component.scss']
 })
-export class SetRowDeletionComponent {
+export class SetItemDeletionComponent {
 
   @Input() id!: number;
   @Input() isProcessing!: boolean

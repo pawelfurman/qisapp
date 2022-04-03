@@ -8,7 +8,7 @@ export const getUsers = async (): Promise<IUserOutput[]> => {
 export const getUsersByUsernameAndPassword = async (username: string, password: string): Promise<IUserOutput> => {
     return await IUser.findOne({
         where: {
-            username,
+            // username,
             password
         },
         raw: true

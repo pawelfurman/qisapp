@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SetRowDefaultComponent } from './set-row-default.component';
+import { SetListComponent } from './set-list.component';
 
-describe('SetRowDefaultComponent', () => {
-  let component: SetRowDefaultComponent;
-  let fixture: ComponentFixture<SetRowDefaultComponent>;
+describe('SetListComponent', () => {
+  let component: SetListComponent;
+  let fixture: ComponentFixture<SetListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SetRowDefaultComponent ]
+      declarations: [ SetListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SetRowDefaultComponent);
+    fixture = TestBed.createComponent(SetListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'fa-set-row-deletion-inability',
-  templateUrl: './set-row-deletion-inability.component.html',
-  styleUrls: ['./set-row-deletion-inability.component.scss']
+  selector: 'fa-set-item-deletion-inability',
+  templateUrl: './set-item-deletion-inability.component.html',
+  styleUrls: ['./set-item-deletion-inability.component.scss']
 })
-export class SetRowDeletionInabilityComponent {
+export class SetItemDeletionInabilityComponent {
 
   @Input() id!: number
   @Output() confirm: EventEmitter<void> = new EventEmitter()

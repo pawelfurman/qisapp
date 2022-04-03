@@ -1,18 +1,13 @@
-import { SetsCreateFormLayout } from './../../store/sets.store';
-import { combineLatestWith, map } from 'rxjs';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SetsCreateStore } from '../../data-access/sets/sets-create.store';
 import { Set } from '../../features/sets/sets.types';
-import { SetsStore } from '../../store/sets.store';
-import { SetAddFormStore } from './set-add-form.store';
+import { SetsCreateFormLayout } from '../../features/sets/sets.store';
 
 @Component({
   selector: 'fa-set-add-form',
   templateUrl: './set-add-form.component.html',
   styleUrls: ['./set-add-form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [SetAddFormStore]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SetAddFormComponent {
 

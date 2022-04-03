@@ -4,6 +4,6 @@
 <p-card header="Sets" *ngIf="vm$ | async as vm">
     <fa-set-add-form [loading]="vm.isCreateLoading" [layout]="vm.layout" (create)="onSetCreate($event)" (toggle)="onToggleCreateForm($event)"></fa-set-add-form>
     <ng-container *ngIf="sets$ | async as sets">
-        <fa-set-table [sets]="vm.entities"></fa-set-table>
+        <fa-set-list [sets]="vm.entities"></fa-set-list>
     </ng-container>
 </p-card>

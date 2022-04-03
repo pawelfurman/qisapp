@@ -26,7 +26,7 @@ export const authenticateMiddleware = (req: Request, res: Response, next: NextFu
 
     res.locals.roles = decoded.roles;
     res.locals.username = decoded.username;
-    res.locals.userId = decoded.id;
+    res.locals.userId = decoded.id.toString();
 
     return next()
 }

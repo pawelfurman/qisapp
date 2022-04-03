@@ -1,0 +1,34 @@
+<ng-container *ngIf="vm$ | async as vm">
+
+
+    <ng-container [ngSwitch]="vm.layout">
+        <ng-container *ngSwitchCase="'default'" [ngTemplateOutlet]="default"></ng-container>
+        <ng-container *ngSwitchCase="'update'" [ngTemplateOutlet]="edition"></ng-container>
+        <ng-container *ngSwitchCase="'delete'" [ngTemplateOutlet]="deletion"></ng-container>
+        <ng-container *ngSwitchCase="'delete-check'" [ngTemplateOutlet]="deletionInability"></ng-container>
+    </ng-container>
+
+    <ng-template #default>
+        <fa-set-item-default [id]="set.id" [name]="set.name" [description]="set.description"
+            [isProcessing]="vm.checkLoading" (checkDelete)="onDeleteCheck($event)" (edit)="onEdit()"
+            (openQuestions)="onOpenQuestions($event)"></fa-set-item-default>
+    </ng-template>
+
+
+    <ng-template #edition>
+        <fa-set-item-edition [id]="set.id" [name]="set.name" [description]="set.description"
+            [isProcessing]="vm.isUpdateLoading" (confirm)="onEditConfirm($event)" (cancel)="onEditCancel()"></fa-set-item-edition>
+    </ng-template>
+
+    <ng-template #deletion>
+        <fa-set-item-deletion [id]="set.id" [isProcessing]="vm.isDeleteLoading" (confirm)="onDeleteConfirm($event)"
+            (cancel)="onDeleteCancel()"></fa-set-item-deletion>
+    </ng-template>
+
+    <ng-template #deletionInability>
+        <fa-set-item-deletion-inability [id]="set.id" (confirm)="onDeleteMessageConfirm()">
+        </fa-set-item-deletion-inability>
+    </ng-template>
+
+
+</ng-container>
