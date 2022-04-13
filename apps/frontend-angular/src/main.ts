@@ -9,7 +9,7 @@ if (environment.production) {
   enableProdMode();
 }
 
-if(!environment.production){
+if(!environment.release){
   worker.start()
 }
 

@@ -2,8 +2,12 @@
 
 <ng-container *ngIf="(vm$ | async) as vm">
     <fa-question-add-form [isLoading]="vm.isCreateLoading" (create)="onQuestionCreate($event)"></fa-question-add-form>
-    <section class="question-list">
+    <section class="question-list" *ngIf="vm.entities.length; else loader">
         <fa-question-list-item *ngFor="let entity of vm.entities" [question]="entity"  @enterLeaveAnimation></fa-question-list-item>
     </section>
 
 </ng-container>
+
+<ng-template #loader>
+    <i class="pi pi-spin pi-spinner"></i>
+</ng-template>

@@ -46,7 +46,7 @@ export const questionHandlers = [
 
     rest.put<CreateQuestion, {questionId: string, setId: string}>(`${host}/sets/:setId/questions/:questionId`, (req, res, ctx) => {
 
-        db.questions.update({
+        const item = db.questions.update({
             where: {id: {equals: Number(req.params.questionId) }},
             data: {
                 setId: Number(req.params.setId),
@@ -54,9 +54,10 @@ export const questionHandlers = [
             }
         })
 
+        console.log(item);
         return res(
             ctx.delay(500),
-            ctx.json([])
+            ctx.json(item)
         )
     }),
 
