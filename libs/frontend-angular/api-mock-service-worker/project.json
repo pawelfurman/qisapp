@@ -1,0 +1,24 @@
+{
+  "root": "libs/frontend-angular/api-mock-service-worker",
+  "sourceRoot": "libs/frontend-angular/api-mock-service-worker/src",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/frontend-angular/api-mock-service-worker/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/frontend-angular/api-mock-service-worker"],
+      "options": {
+        "jestConfig": "libs/frontend-angular/api-mock-service-worker/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

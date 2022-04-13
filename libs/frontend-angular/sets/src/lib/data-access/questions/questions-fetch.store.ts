@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { ComponentStore, tapResponse } from "@ngrx/component-store";
 import { Observable, switchMap, tap } from "rxjs";
 import { QuestionsService } from "./questions.service";
+import { ApiQuestion } from '@qisapp/api-contract';
 
 
 
@@ -39,7 +40,7 @@ export class QuestionsFetchStore extends ComponentStore<QuestionFetchState> {
       tap(_ => this.patchState({loading: true})),
       switchMap( (params) => this.service.fetchQuestions(params.setId).pipe(
         tapResponse(
-          (entities) => {
+          (entities: ApiQuestion[]) => {
             this.questionsEntitiesStore.addEntities(entities);
             this.patchState({loading: false})
           },
@@ -50,8 +51,5 @@ export class QuestionsFetchStore extends ComponentStore<QuestionFetchState> {
       ))
     )
   })
-
-
-
 }
 

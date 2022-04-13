@@ -7,11 +7,13 @@ export type SetsCreateFormLayout = "default" | "create"
 
 
 export interface SetsState {
-  createFormLayout: SetsCreateFormLayout
+  createFormLayout: SetsCreateFormLayout,
+  animationEnabling: boolean
 };
 
 const initialState: SetsState = {
-  createFormLayout: "default"
+  createFormLayout: "default",
+  animationEnabling: true
 };
 
 @Injectable()
@@ -24,12 +26,18 @@ export class SetsStore extends ComponentStore<SetsState> {
   /** Selectors */
 
   createFormLayout$ = this.select((state)=>state.createFormLayout)
+  animationEnabling$ = this.select((state) => state.animationEnabling)
 
 
   /** Updaters */
 
   setCreateFormLayout = this.updater((state, createFormLayout: SetsCreateFormLayout) => {
     return {...state, createFormLayout}
+  })
+
+
+  setAnimationEnabling = this.updater((state, animationEnabling:boolean) => {
+    return {...state, animationEnabling}
   })
 
 

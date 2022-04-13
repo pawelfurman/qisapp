@@ -1,3 +1,9 @@
+type Timestamps = {
+  createdAt: Date | string | null,
+  updatedAt: Date | string | null,
+  deletedAt: Date | string | null
+}
+
 export type ApiQuestion = {
   id: number,
   setId: number,
@@ -7,21 +13,15 @@ export type ApiQuestion = {
   firstValueUsage: string,
   secondValueUsage: string,
   firstValueCollocation: string,
-  secondValueCollocation: string,
-  createdAt: Date,
-  updatedAt: Date,
-  deletedAt: Date
-}
+  secondValueCollocation: string
+} & Timestamps
 
 export type ApiSet = {
   id: number,
   name: string,
   description: string,
-  userId: number,
-  createdAt: Date,
-  updatedAt: Date,
-  deletedAt: Date
-}
+  userId: number
+} & Timestamps
 
 export type ApiUser = {
   id: number,

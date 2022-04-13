@@ -18,6 +18,7 @@
         "inlineStyleLanguage": "scss",
         "assets": [
           "apps/frontend-angular/src/favicon.ico",
+          "apps/frontend-angular/src/mockServiceWorker.js",
           "apps/frontend-angular/src/assets"
         ],
         "styles": [
@@ -27,7 +28,11 @@
           "node_modules/primeicons/primeicons.css",
           "node_modules/primeflex/primeflex.css"
         ],
-        "scripts": []
+        "scripts": [],
+        "allowedCommonJsDependencies": [
+          "@mswjs/cookies",
+          "@mswjs/interceptors"
+        ]
       },
       "configurations": {
         "production": {

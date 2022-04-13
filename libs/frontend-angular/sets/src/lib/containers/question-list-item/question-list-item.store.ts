@@ -21,11 +21,11 @@ export class QuestionListItemStore extends ComponentStore<QuestionListItemState>
   /** Selectors */
   readonly mode$ = this.select((state) => state.mode)
   readonly isUpdateMode$ = this.select(this.mode$, (mode) => mode === 'update')
-  readonly usDefaultMode$ = this.select(this.mode$, (mode) => mode === 'default')
+  readonly isDefaultMode$ = this.select(this.mode$, (mode) => mode === 'default')
 
   readonly vm$ = this.select(
     this.isUpdateMode$,
-    this.usDefaultMode$,
+    this.isDefaultMode$,
     (isUpdateMode, isDefaultMode) => {
       return {
         isUpdateMode,

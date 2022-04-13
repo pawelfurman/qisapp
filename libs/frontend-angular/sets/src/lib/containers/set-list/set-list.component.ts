@@ -1,6 +1,7 @@
-import { transition, trigger, useAnimation } from '@angular/animations';
+import { transition, trigger, useAnimation, AnimationEvent } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { hideListItem, showListItem } from '@qisapp/shared';
+import { SetsStore } from '../../features/sets/sets.store';
 import { Set } from '../../features/sets/sets.types'
 
 @Component({
@@ -16,10 +17,20 @@ import { Set } from '../../features/sets/sets.types'
       transition(':leave',[
         useAnimation(hideListItem, {params: {time: '150ms'}})
       ])
-    ])
+    ]),
   ]
 })
 export class SetListComponent {
 
-  @Input() sets!: Set[];
+  @Input() sets!: Set[]
+
+  animationEnabling$ = this.setsStore.animationEnabling$
+
+  constructor(private setsStore: SetsStore){}
+
+  captureDoneEvent(event: AnimationEvent){
+    if(event.toState === null){
+      this.setsStore.setAnimationEnabling(true);
+    }
+  }
 }

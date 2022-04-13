@@ -1,0 +1,52 @@
+{
+  "root": "apps/backend-server-mock",
+  "sourceRoot": "apps/backend-server-mock/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/backend-server-mock",
+        "main": "apps/backend-server-mock/src/main.ts",
+        "tsConfig": "apps/backend-server-mock/tsconfig.app.json",
+        "assets": ["apps/backend-server-mock/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/backend-server-mock/src/environments/environment.ts",
+              "with": "apps/backend-server-mock/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "backend-server-mock:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/backend-server-mock/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/backend-server-mock"],
+      "options": {
+        "jestConfig": "apps/backend-server-mock/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["type:mock"]
+}

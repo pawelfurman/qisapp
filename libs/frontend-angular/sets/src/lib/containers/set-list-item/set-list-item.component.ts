@@ -1,3 +1,4 @@
+import { SetsStore } from './../../features/sets/sets.store';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { combineLatestWith, map } from 'rxjs';
@@ -40,7 +41,8 @@ export class SetListItemComponent {
     private setListItemStore: SetListItemStore,
     private router: Router,
     private setsDeleteStore: SetsDeleteStore,
-    private setsUpdateStore: SetsUpdateStore
+    private setsUpdateStore: SetsUpdateStore,
+    private setsStore: SetsStore
   ) { 
 
    
@@ -72,6 +74,7 @@ export class SetListItemComponent {
   }
 
   onEditConfirm(data: {name: string, description: string}){
+    this.setsStore.setAnimationEnabling(false)
     this.setsUpdateStore.updateSet({...data, id: this.set.id} as Set)
   }
 

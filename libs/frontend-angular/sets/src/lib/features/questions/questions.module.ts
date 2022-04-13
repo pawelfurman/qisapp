@@ -28,6 +28,4 @@ import { QuestionsComponent } from './questions.component';
   ],
   providers: [QuestionsFetchStore, QuestionsEntitiesStore]
 })
-export class QuestionsModule { 
-
-}
+export class QuestionsModule {}

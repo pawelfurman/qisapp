@@ -16,6 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@qisapp/api-contract": ["libs/api-contract/src/index.ts"],
+      "@qisapp/frontend-angular/api-mock-service-worker": [
+        "libs/frontend-angular/api-mock-service-worker/src/index.ts"
+      ],
       "@qisapp/frontend-angular/auth": [
         "libs/frontend-angular/auth/src/index.ts"
       ],

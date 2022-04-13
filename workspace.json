@@ -3,7 +3,9 @@
   "projects": {
     "api-contract": "libs/api-contract",
     "backend-server": "apps/backend-server",
+    "backend-server-mock": "apps/backend-server-mock",
     "frontend-angular": "apps/frontend-angular",
+    "frontend-angular-api-mock-service-worker": "libs/frontend-angular/api-mock-service-worker",
     "frontend-angular-auth": "libs/frontend-angular/auth",
     "frontend-angular-dashboard": "libs/frontend-angular/dashboard",
     "frontend-angular-e2e": "apps/frontend-angular-e2e",

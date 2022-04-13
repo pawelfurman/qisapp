@@ -1,0 +1,1 @@
+export {worker} from './lib/mocks/browser'

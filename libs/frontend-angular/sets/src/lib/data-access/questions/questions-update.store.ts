@@ -4,6 +4,7 @@ import { ComponentStore, tapResponse } from "@ngrx/component-store";
 import { delay, Observable, switchMap, tap } from "rxjs";
 import { Question } from "../../features/questions/questions.types";
 import { QuestionsService } from "./questions.service";
+import { ApiQuestion } from '@qisapp/api-contract';
 
 
 
@@ -43,7 +44,7 @@ readonly updateQuestion = this.effect((data$: Observable<Question> ) => {
       switchMap((data) => this.service.updateQuestion(data.setId,  data.id, data).pipe(
         delay(500),
         tapResponse(
-          (response) => {
+          (response: ApiQuestion) => {
             this.patchState({loading: false})
             this.questionsEntitiesStore.updateEntity(response)
           },

@@ -1,4 +1,3 @@
-import { state } from "@angular/animations";
 import { Injectable } from "@angular/core";
 import { ComponentStore } from "@ngrx/component-store";
 import { Question } from "../../features/questions/questions.types";
@@ -28,7 +27,7 @@ export class QuestionsEntitiesStore extends ComponentStore<QuestionEntityState> 
   /** Selectors */
 
   readonly entities$ = this.select(state => state.entities)
-  readonly loaded$ = this.select(state => state.loaded, {debounce: true})
+  readonly loaded$ = this.select(state => state.loaded)
 
 
   /** Updaters */

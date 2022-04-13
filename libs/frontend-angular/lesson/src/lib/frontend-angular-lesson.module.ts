@@ -17,6 +17,6 @@ export const frontendAngularLessonRoutes: Route[] = [
     ShellModule,
     
   ],
-  providers: [LessonStore, ExerciseEngineService]
+  providers: [ExerciseEngineService]
 })
 export class FrontendAngularLessonModule { }
