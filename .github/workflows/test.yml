@@ -16,6 +16,26 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
+  test:
+    runs-on: ubunti-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run application unit tests
+        run: |
+          echo "Run test on Btanch $GITHUB_BASE_REF"
+          echo "The job_id is: $GITHUB_JOB"
+          echo "The id of this action is: $GITHUB_ACTION"
+          echo "The run id is: $GITHUB_RUN_ID" 
+          echo "The GitHub Actor's username is: $GITHUB_ACTOR"
+
+  install: 
+    runs-on: ubunti-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install depedencies
+        run: |
+          echo "Install Staff and pass save as artifactory"
+
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -31,9 +51,12 @@ jobs:
           docker login -u pawelfurman -p ${{ secrets.DOCKER_PASSWORD }}
           cd docker
           sh push.sh
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+  
+  deploy: 
+    runs-on: ubunti-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy docker image
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          echo "Deploy manually :)"
+
