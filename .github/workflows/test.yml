@@ -28,6 +28,11 @@ jobs:
       # Runs a single command using the runners shell
       - name: Build docker image with latest version
         run: | 
-          cd docker,
+          cd docker
           sh push.sh
 
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
