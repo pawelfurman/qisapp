@@ -17,7 +17,7 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   test:
-    runs-on: ubunti-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Run application unit tests
@@ -30,7 +30,7 @@ jobs:
 
   install: 
     needs: test
-    runs-on: ubunti-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Install depedencies
@@ -50,7 +50,7 @@ jobs:
   
   deploy: 
     needs: build
-    runs-on: ubunti-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Deploy docker image
