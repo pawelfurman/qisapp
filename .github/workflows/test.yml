@@ -28,7 +28,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Build docker image with latest version
         run: | 
-          docker login -p pawelfurman -u ${{ secrets.DOCKER_PASSWORD }}
+          docker login -u pawelfurman -p ${{ secrets.DOCKER_PASSWORD }}
           cd docker
           sh push.sh
 
