@@ -3,6 +3,7 @@ import * as express from 'express';
 import authRouter from './app/features/auth/routes'
 import { router as setsRouter } from './app/features/sets/routes'
 import { router as questionsRouter } from './app/features/questions/routes'
+import { router as lessonsRouter } from './app/features/lessons/routes'
 import {authenticateMiddleware,} from './app/features/auth/middleware/authenticate'
 import { authorizationMiddleware } from './app/features/auth/middleware/authorization';
 import { sequelize } from './app/db/connection';
@@ -53,10 +54,16 @@ app.use(routes)
 app.use(authRouter)
 app.use(setsRouter)
 app.use(questionsRouter)
+app.use(lessonsRouter)
 
 
 
 app.listen(3000, () => {
+    console.log(process.env.DB_NAME)
+    console.log(process.env.DB_USER)
+    console.log(process.env.DB_PASSWORD)
+    console.log(process.env.DB_HOST)
+    console.log(process.env.DB_PORT)
     console.log('Serve in localhost:3000!')
 })
 

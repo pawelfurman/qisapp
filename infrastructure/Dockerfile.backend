@@ -1,0 +1,42 @@
+#!/bin/bash
+
+FROM --platform=linux/amd64 node:16.18.1-slim AS builder
+
+RUN apt-get update -y
+RUN apt-get install -y python3 make g++\
+   && rm -rf /var/cache/apk/*
+
+WORKDIR /usr/src/app
+COPY ./package.json ./
+
+RUN npm install
+COPY . .
+
+# RUN npm install -g @angular/cli
+RUN npm install -g @nrwl/cli@13.9.5
+RUN npm install -g nx@13.9.5
+
+# ENV NODE_ENV=production
+
+RUN nx build backend-server --prod
+
+
+###################
+
+FROM node:16.18.1-slim
+
+WORKDIR /usr/src/app
+
+RUN npm install body-parser
+RUN npm install express
+RUN npm install sequelize
+RUN npm install mysql2
+RUN npm install cors
+RUN npm install jsonwebtoken
+RUN npm install tslib
+
+COPY --from=builder /usr/src/app/dist/apps/backend-server /usr/src/app/dist/apps/backend-server
+
+EXPOSE 3000
+
+CMD ["node", "./dist/apps/backend-server/main.js"]

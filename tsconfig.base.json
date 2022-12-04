@@ -31,7 +31,8 @@
       "@qisapp/frontend-angular/sets": [
         "libs/frontend-angular/sets/src/index.ts"
       ],
-      "@qisapp/shared": ["libs/shared/src/index.ts"]
+      "@qisapp/shared": ["libs/shared/src/index.ts"],
+      "@qisapp/frontend-angular/env": ["apps/frontend-angular/src/environments/environment"]
     }
   },
   "exclude": ["node_modules", "tmp"]

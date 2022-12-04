@@ -40,6 +40,6 @@ export const worker = setupWorker(
     ...authHandlers,
     ...setsHandlers,
     ...questionHandlers,
-    ...db.sets.toHandlers('rest', host)
+    // ...db.sets.toHandlers('rest', host)
 
 )
