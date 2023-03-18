@@ -1,6 +1,7 @@
 import { ApiQuestion } from "@qisapp/api-contract";
 import { DataTypes, Model, Optional } from "sequelize";
 import { sequelize } from "../connection";
+import IQuestion from "./questions";
 
 export type ApiLessonsQuestions = {
     id: number
@@ -36,7 +37,11 @@ ILessonsQuestions.init({
     },
     lessonId: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: true,
+        references: {
+            model: 'lessons',
+            key: 'id'
+        }
     },
     createdAt: {
         type: DataTypes.DATE,
@@ -55,6 +60,11 @@ ILessonsQuestions.init({
     paranoid: true,
     timestamps: true,
     tableName: 'lessons_questions'
+})
+
+ILessonsQuestions.hasOne(IQuestion, {
+    as: 'question',
+    foreignKey: 'id'
 })
 
 export default ILessonsQuestions;

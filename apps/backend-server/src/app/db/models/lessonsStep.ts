@@ -5,6 +5,7 @@ export type ApiLessonsStep = {
     id: number
     questionId: number
     lessonId: number
+    userId: number,
     correctness: boolean
     createdAt: Date | string | null
     updatedAt: Date | string | null
@@ -18,6 +19,7 @@ class ILessonsStep extends Model<ApiLessonsStep, ILessonsStepInput> implements A
     id!: number
     questionId!: number
     lessonId!: number
+    userId!: number
     correctness!: boolean
     createdAt!: Date
     updatedAt!: Date
@@ -36,6 +38,10 @@ ILessonsStep.init({
         allowNull: true
     },
     lessonId: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    userId: {
         type: DataTypes.INTEGER,
         allowNull: true
     },

@@ -1,10 +1,14 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import { sequelize } from "../connection";
+import ILessonsQuestions from "./lessonsQuestions";
+import ILessonsStatus from "./lessonsStatus";
 
 export type ApiLessons = {
     id: number
     size: number
     userId: number
+    repetition: number
+    answerIncrement: number
     createdAt: Date | string | null
     updatedAt: Date | string | null
     deletedAt: Date | string | null
@@ -17,6 +21,8 @@ class ILessons extends Model<ApiLessons, ILessonsInput> implements ApiLessons{
     id!: number
     size!: number
     userId!: number
+    repetition!: number
+    answerIncrement!: number
     createdAt!: Date
     updatedAt!: Date
     deletedAt!: Date
@@ -33,6 +39,14 @@ ILessons.init({
         allowNull: true
     },
     userId: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    repetition: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    answerIncrement: {
         type: DataTypes.INTEGER,
         allowNull: true
     },
@@ -55,4 +69,19 @@ ILessons.init({
     tableName: 'lessons'
 })
 
+
+ILessons.hasMany(ILessonsStatus, {
+    foreignKey: 'lessonId',
+    as: 'status'
+})
+ILessons.hasMany(ILessonsQuestions, {
+    foreignKey: 'lessonId',
+    as: 'questions'
+})
+
+// ILessonsStatus.belongsTo(ILessons)
+// ILessonsQuestions.belongsTo(ILessons)
+
 export default ILessons;
+
+
