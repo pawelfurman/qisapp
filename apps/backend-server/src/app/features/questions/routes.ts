@@ -6,14 +6,17 @@ import {createQuestion} from './api/create-question'
 import {updateQuestion} from './api/update-question'
 import {deleteQuestion} from './api/delete-question'
 import {getQuestion} from './api/get-question'
-import {getQuestions} from './api/get-questions'
+import {getQuestionsBySetId} from './api/get-questions-by-set-id'
+import { getQuestions } from "./api/get-questions";
 
 
 const router = Router();
 
 const authMiddelwares = [authenticateMiddleware, authorizationMiddleware]
 
-router.get('/sets/:setId/questions', ...authMiddelwares, getQuestions)
+router.get('/questions', ...authMiddelwares, getQuestions)
+router.delete('/questions/:id', ...authMiddelwares, deleteQuestion)
+router.get('/sets/:setId/questions', ...authMiddelwares, getQuestionsBySetId)
 router.post('/sets/:setId/questions', ...authMiddelwares, createQuestion)
 router.get('/sets/:setId/questions/:id', ...authMiddelwares, getQuestion)
 router.put('/sets/:setId/questions/:id', ...authMiddelwares, updateQuestion)
