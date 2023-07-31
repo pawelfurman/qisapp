@@ -6,6 +6,7 @@ export const createLessonStep = async (req:Request, res: Response) => {
     const userId = res.locals.userId;
 
     const result = await ILessonsStep.create({
+        userAnswer: body.userAnswer,
         questionId: body.questionId,
         lessonId: body.lessonId,
         userId,

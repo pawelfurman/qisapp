@@ -8,6 +8,10 @@ import {authenticateMiddleware,} from './app/features/auth/middleware/authentica
 import { authorizationMiddleware } from './app/features/auth/middleware/authorization';
 import { sequelize } from './app/db/connection';
 import * as cors from 'cors';
+import { Kafka } from 'kafkajs'
+import { Chance } from 'chance'
+import { consumer, producer, Topics } from './app/kafka/connection';
+import { lessonStepConsumer, runLessonConsumers } from './app/features/lessons/events';
 
 const app = express();
 
@@ -58,13 +62,30 @@ app.use(lessonsRouter)
 
 
 
-app.listen(3000, () => {
-    console.log(process.env.DB_NAME)
-    console.log(process.env.DB_USER)
-    console.log(process.env.DB_PASSWORD)
-    console.log(process.env.DB_HOST)
-    console.log(process.env.DB_PORT)
+
+const chance = new Chance()
+
+
+app.listen(3000, async () => {
+    console.log('Init kafka...')
+
+    await producer.connect()
+
+    // setInterval(async () => {
+    //     await producer.send({
+    //         topic: 'test',
+    //         messages: [{
+    //             value: 'Hello ' + chance.animal()
+    //         }]
+    //     })
+    // }, 2000)
+
+
+    await runLessonConsumers()
+
+    console.log('Kafka initialized')
     console.log('Serve in localhost:3000!')
 })
+
 
 

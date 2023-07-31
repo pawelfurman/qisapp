@@ -1,43 +1,49 @@
 import { DataTypes, Model, Optional } from "sequelize";
-import { LESSON_STEP_CREATED } from "../../features/lessons/events/lesson-step-created";
-import { producer, Topics } from "../../kafka/connection";
 import { sequelize } from "../connection";
 
-export type ApiLessonsStep = {
+export type ApiRmLessonsSummaryStep = {
     id: number
-    questionId: number
+    stepId: number
     lessonId: number
+    lessonName: string
+    questionId: number
+    firstValue: string
+    secondValue: string
+    userAnswer: string
     userId: number
     correctness: boolean
-    userAnswer: string
     createdAt: Date | string | null
     updatedAt: Date | string | null
     deletedAt: Date | string | null
 }
 
 
-type ILessonsStepInput = Optional<ApiLessonsStep, 'id' | 'createdAt' | 'deletedAt' | 'updatedAt'>;
+type IRmLessonsSummaryStepInput = Optional<ApiRmLessonsSummaryStep, 'id' | 'createdAt' | 'deletedAt' | 'updatedAt'>;
 
-class ILessonsStep extends Model<ApiLessonsStep, ILessonsStepInput> implements ApiLessonsStep{
+class IRmLessonsSummaryStep extends Model<ApiRmLessonsSummaryStep, IRmLessonsSummaryStepInput> implements ApiRmLessonsSummaryStep{
     id!: number
-    questionId!: number
+    stepId!: number
     lessonId!: number
+    lessonName!: string
+    questionId!: number
+    firstValue!: string
+    secondValue!: string
+    userAnswer!: string
     userId!: number
     correctness!: boolean
-    userAnswer: string
-    createdAt!: Date
-    updatedAt!: Date
-    deletedAt!: Date
+    createdAt!: Date | string | null
+    updatedAt!: Date | string | null
+    deletedAt!: Date | string | null
 }
 
 
-ILessonsStep.init({
+IRmLessonsSummaryStep.init({
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    questionId: {
+    stepId: {
         type: DataTypes.INTEGER,
         allowNull: true
     },
@@ -45,6 +51,25 @@ ILessonsStep.init({
         type: DataTypes.INTEGER,
         allowNull: true
     },
+    lessonName: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    questionId: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+
+    firstValue: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+
+    secondValue: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+
     userId: {
         type: DataTypes.INTEGER,
         allowNull: true
@@ -73,21 +98,7 @@ ILessonsStep.init({
     sequelize,
     paranoid: true,
     timestamps: true,
-    tableName: 'lessons_step',
-    hooks: {
-        afterCreate: (data, opts) => {
-            console.log('STEP CREATED!!')
-            console.log(data)
-            console.log(opts)
-            producer.send({
-                topic: 'lesson-steps',
-                messages: [{
-                    key: Topics.LessonSteps,
-                    value: Buffer.from(JSON.stringify(data.get()))
-                }]
-            })
-        }
-    }
+    tableName: 'rm_lessons_summary_steps'
 })
 
-export default ILessonsStep;
+export default IRmLessonsSummaryStep;

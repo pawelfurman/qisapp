@@ -21,7 +21,7 @@ const initialState: QuestionState = {
 @Injectable()
 export class QuestionsUpdateStore extends ComponentStore<QuestionState> {
   constructor(private service: QuestionsService, private questionsEntitiesStore: QuestionsEntitiesStore) {
-    super(initialState);
+    super(initialState); 
   }
 
 
